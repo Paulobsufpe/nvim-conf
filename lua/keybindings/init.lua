@@ -52,6 +52,7 @@ map('n', '.S', ":Telescope symbols<CR>")
 map('n', '.,', ":Telescope diagnostics<CR>")
 
 map('n', './', ":lua vim.lsp.buf.code_action()<CR>", {silent=true})
+map('n', '..', ":lua vim.lsp.buf.")
 
 -- Trouble
 
