@@ -27,6 +27,7 @@ map(
 
 map('v', '>', '>gv')
 map('v', '<', '<gv')
+-- NOTE: talvez deva mudar isso depois para liberar o comando '>' puro.
 
 -- LSP
 
@@ -42,15 +43,15 @@ map('n', '.g', ":Telescope live_grep<CR>")
 map('n', '.b', ":Telescope buffers<CR>")
 map('n', '.h', ":Telescope help_tags<CR>")
 map('n', '.c', ":Telescope commands<CR>")
-map('n', '..', ":Telescope lsp_code_actions<CR>")
-map('n', '.a', ":Telescope lsp_range_code_actions<CR>")
+-- map('n', '..', ":Telescope lsp_code_actions<CR>")
+-- map('n', '.a', ":Telescope lsp_range_code_actions<CR>")
 map('n', '.r', ":Telescope lsp_references<CR>")
 map('n', '.d', ":Telescope lsp_definitions<CR>")
 map('n', '.s', ":Telescope lsp_dynamic_workspace_symbols<CR>")
 map('n', '.S', ":Telescope symbols<CR>")
 map('n', '.,', ":Telescope diagnostics<CR>")
 
-map('n', './', ":lua vim.lsp.buf.code_action()<CR>")
+map('n', './', ":lua vim.lsp.buf.code_action()<CR>", {silent=true})
 
 -- Trouble
 
