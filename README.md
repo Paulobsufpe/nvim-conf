@@ -13,6 +13,7 @@ O gerenciador de plugins utilizado é o [packer.nvim](https://github.com/wbthoma
 - Fácil alinhamento de textos e tabelas com [vim-easy-align](https://github.com/junegunn/vim-easy-align).
 - *Syntax Highlight* melhorada com [Tree-sitter](https://github.com/tree-sitter/tree-sitter) e [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
 - Uso de *TODO-comments*, além de *fuzzy search* com [Telescope](https://github.com/nvim-telescope/telescope.nvim).
+- Emojis 😀 🥰 ☂️  🌈 .
 - ... e um pouco mais (a documentar).
 
 ## Agradecimentos e menções
