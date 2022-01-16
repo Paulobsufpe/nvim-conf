@@ -8,12 +8,12 @@
 
 O gerenciador de plugins utilizado é o [packer.nvim](https://github.com/wbthomason/packer.nvim). Os plugins já presentes e configurados oferecem:
 
-- 3 temas simples, incluindo **material** e **dracula**.
-- As capacidades do protocolo LSP via o módulo LSP *builtin* das mais novas versões do editor e [nvim-cmp](https://github.com/hrsh7th/nvim-cmp/).
-- Fácil alinhamento de textos e tabelas com [vim-easy-align](https://github.com/junegunn/vim-easy-align).
-- *Syntax Highlight* melhorada com [Tree-sitter](https://github.com/tree-sitter/tree-sitter) e [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
-- Uso de *TODO-comments*, além de *fuzzy search* com [Telescope](https://github.com/nvim-telescope/telescope.nvim).
-- Emojis 😀 🥰 ☂️  🌈 .
+- 3 temas simples, incluindo **material** e **dracula**;
+- As capacidades do protocolo LSP via o módulo LSP *builtin* das mais novas versões do editor e [nvim-cmp](https://github.com/hrsh7th/nvim-cmp/);
+- Fácil alinhamento de textos e tabelas com [vim-easy-align](https://github.com/junegunn/vim-easy-align);
+- *Syntax Highlight* melhorada com [Tree-sitter](https://github.com/tree-sitter/tree-sitter) e [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter);
+- Uso de *TODO-comments*, além de *fuzzy search* com [Telescope](https://github.com/nvim-telescope/telescope.nvim);
+- Emojis 😀 🥰 ☂️  🌈 ;
 - ... e um pouco mais (a documentar).
 
 ## Agradecimentos e menções
