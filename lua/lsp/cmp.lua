@@ -53,12 +53,14 @@ cmp.setup({
     end, {"i", "s"})
   },
   sources = {
-    {name = 'nvim_lsp'}, -- For vsnip user.
-    {name = 'vsnip'}, -- For luasnip user.
+    {name = 'nvim_lsp'}, 
+    {name = 'vsnip'}, 
+    -- For luasnip user.
     -- { name = 'luasnip' },
     -- For ultisnips user.
     -- { name = 'ultisnips' },
-    {name = 'buffer'}
+    {name = 'buffer'},
+    {name = 'path'}
   },
   formatting = {format = lspkind.cmp_format({with_text = true, maxwidth = 50})}
 })
