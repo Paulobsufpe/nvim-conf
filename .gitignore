@@ -1,4 +1,4 @@
 plugin/packer_compiled.lua
-compiler/
-indent/
-syntax/
+compiler
+indent
+syntax
