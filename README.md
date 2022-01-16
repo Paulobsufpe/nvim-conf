@@ -12,10 +12,10 @@ O gerenciador de plugins utilizado é o [packer.nvim](https://github.com/wbthoma
 - Fácil alinhamento de textos e tabelas com [vim-easy-align](https://github.com/junegunn/vim-easy-align).
 - *Syntax Highlight* com [Treesitter](https://github.com/tree-sitter/tree-sitter) e [nvim-treesiter](https://github.com/nvim-treesitter/nvim-treesitter).
 - Uso de *TODO-comments*, *fuzzy search* com [Telescope](https://github.com/nvim-telescope/telescope.nvim).
-- ... e pouco mais (a documentar).
+- ... e um pouco mais (a documentar).
 
 ## Agradecimentos
 
-- Thanks to [Neil Sabde](https://github.com/hackorum) for making his [ingenious setup](https://github.com/hackorum/nfs) available on [Youtube](https://youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V).
+- Thanks to [Neil Sabde](https://github.com/hackorum) for making his [ingenious setup](https://github.com/hackorum/nfs) and journey available on [Youtube](https://youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V).
 
 
