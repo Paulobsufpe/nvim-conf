@@ -1,6 +1,7 @@
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = {"c", "rust", "python", "lua", 
-						"java", "julia", "html", "json"},
+						"java", "julia", "html", "json",
+						"c_sharp"},
 	
 	highlight = {
 		enable = true,
