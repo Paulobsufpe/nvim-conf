@@ -6,8 +6,14 @@ require('telescope').setup {
 	layout_config = {
 	  preview_cutoff = 55
 	},
-	find_command = {'rg', '--no-heading', '--with-filename', 
-        '--line-number', '--column', '--smart-case'},
+	find_command = {
+      'rg', 
+      '--no-heading', 
+      '--with-filename', 
+      '--line-number', 
+      '--column', 
+      '--smart-case'
+    },
     prompt_prefix = " ",
 	path_display = {},
 	color_devicons = true,

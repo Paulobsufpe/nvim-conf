@@ -51,7 +51,7 @@ return require('packer').startup(function(use)
   -- use {'folke/which-key.nvim', event = "BufWinEnter", config = "require('whichkey-config')"}
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/plenary.nvim'}},
+    requires = {'nvim-lua/plenary.nvim'},
     cmd = "Telescope",
     config = "require('telescope-conf')",
     event = 'BufWinEnter'
@@ -72,12 +72,19 @@ return require('packer').startup(function(use)
   use {'hrsh7th/vim-vsnip'}
   use {'hrsh7th/vim-vsnip-integ'}
   use {'rafamadriz/friendly-snippets'}
+  use {
+    'j-hui/fidget.nvim',
+    requires = 'neovim/nvim-lspconfig',
+    config = function() require("fidget").setup {} end,
+    after = 'nvim-lspconfig'
+  }
   use {'onsails/lspkind-nvim'}
   use {'williamboman/nvim-lsp-installer'}
   use {
       'norcalli/nvim-colorizer.lua', 
       config = "require('colorizer-conf')", 
-      event = "BufRead"}
+      event = "BufRead"
+  }
 
   use {
       'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim', 
