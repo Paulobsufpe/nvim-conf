@@ -85,6 +85,11 @@ return require('packer').startup(function(use)
       config = "require('colorizer-conf')", 
       event = "BufRead"
   }
+  use {
+    'terrortylor/nvim-comment',
+    config = "require('nvim_comment-conf')",
+    event = "BufWinEnter"
+  }
 
   use {
       'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim', 
