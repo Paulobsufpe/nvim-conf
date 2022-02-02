@@ -17,17 +17,11 @@ map(
 	{silent=true}
 )
 
-
-local function syntax_change(syntax, treesitter_tgl)
-	if not syntax then
-		return ':TSBufDisable highlight<CR>:syntax off<CR>'
-	end
-	if treesitter_tgl then
-		return ':TSBufToggle highlight<CR>:syntax on<CR>'
-	end
-end
-map('n', '<leader>h', syntax_change(false))
-map('n', '<leader>t', syntax_change(true, true))
+map(
+	'n', '<leader>h', 
+	":lua vim.cmd(vim.b.current_syntax and 'syntax off | TSBufEnable highlight' or 'syntax on | TSBufDisable highlight')<CR>",
+	{silent = true}
+)
 
 map('v', '>', '>gv')
 map('v', '<', '<gv')

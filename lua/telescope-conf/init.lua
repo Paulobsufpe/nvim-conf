@@ -8,6 +8,7 @@ require('telescope').setup {
 	},
 	find_command = {
       'rg', 
+      '--color=never',
       '--no-heading', 
       '--with-filename', 
       '--line-number', 
