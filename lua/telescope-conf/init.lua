@@ -1,10 +1,11 @@
 local actions = require('telescope.actions')
+local previewers = require('telescope.previewers')
+
 require('telescope').setup {
   defaults = {
-	previewer = true,
-    layout_strategy = "horizontal",
+    layout_strategy = 'vertical',
+    preview = false,
 	layout_config = {
-	  preview_cutoff = 55
 	},
 	find_command = {
       'rg', 
@@ -24,7 +25,32 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
-      theme = "ivy",
+      theme = 'ivy',
+      layout_config = {
+        preview_cutoff = 50
+      }
+    },
+    live_grep = {
+      layout_strategy = 'vertical',
+      layout_config = {
+        preview_cutoff = 10
+      },
+      preview = true
+    },
+    lsp_code_actions = {
+      layout_strategy =  'cursor',
+      prompt_title = 'Actions',
+      results_title = '',
+      layout_config = {
+        height = 8,
+        width = 0.6
+      }
+    },
+    lsp_references = {
+      layout_config = {
+        preview_cutoff = 10
+      },
+      preview = true
     }
   },
   extensions = {

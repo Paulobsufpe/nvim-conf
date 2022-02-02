@@ -17,6 +17,8 @@ map(
 	{silent=true}
 )
 
+map('n', '<leader>d', ':ToggleDiag<CR>')
+
 map(
 	'n', '<leader>h', 
 	":lua vim.cmd(vim.b.current_syntax and 'syntax off | TSBufEnable highlight' or 'syntax on | TSBufDisable highlight')<CR>",
@@ -35,6 +37,11 @@ map('n', 'fg', ":Telescope live_grep<CR>")
 map('n', 'fb', ":Telescope buffers<CR>")
 map('n', 'fh', ":Telescope help_tags<CR>")
 map('n', 'fc', ":Telescope commands<CR>")
+map('n', '..', ":Telescope lsp_code_actions<CR>")
+map('n', '.a', ":Telescope lsp_range_code_actions<CR>")
+map('n', '.r', ":Telescope lsp_references<CR>")
+map('n', '.d', ":Telescope lsp_definitions<CR>")
+map('n', '.s', ":Telescope lsp_dynamic_workspace_symbols<CR>")
 
 -- BufferLine
 
