@@ -42,25 +42,30 @@ map('n', '.a', ":Telescope lsp_range_code_actions<CR>")
 map('n', '.r', ":Telescope lsp_references<CR>")
 map('n', '.d', ":Telescope lsp_definitions<CR>")
 map('n', '.s', ":Telescope lsp_dynamic_workspace_symbols<CR>")
+map('n', '.,', ":Telescope diagnostics<CR>")
+
+-- Trouble
+
+map('n', ',,', ":Trouble workspace_diagnostics<CR>")
+
+-- Todo
+
+map('n', ';.', ":TodoTelescope<CR>")
+map('n', ';,', ":Trouble todo<CR>")
+map('n', ';;', ":TodoLocList<CR>")
 
 -- BufferLine
 
 map('n', ']b', ':BufferLineCycleNext<CR>', {silent=true})
 map('n', '[b', ':BufferLineCyclePrev<CR>', {silent=true})
 
+map('n', 'm>', ':BufferLineMoveNext<CR>', {silent=true})
+map('n', 'm<', ':BufferLineMovePrev<CR>', {silent=true})
+
 map('n', 'sbe', ':BufferLineSortByExtension<CR>', {silent=true})
 map('n', 'sbd', ':BufferLineSortByDirectory<CR>', {silent=true})
 
 --[[
-" These commands will navigate through buffers in order regardless of which mode you are using
-" e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-nnoremap <silent>]b :BufferLineCycleNext<CR>
-nnoremap <silent>[b :BufferLineCyclePrev<CR>
-
-" These commands will move the current buffer backwards or forwards in the bufferline
-" nnoremap <silent><mymap> :BufferLineMoveNext<CR>
-" nnoremap <silent><mymap> :BufferLineMovePrev<CR>
-
 " These commands will sort buffers by directory, language, or a custom criteria
 nnoremap <silent>sbe :BufferLineSortByExtension<CR>
 nnoremap <silent>sbd :BufferLineSortByDirectory<CR>

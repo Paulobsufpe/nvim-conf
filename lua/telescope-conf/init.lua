@@ -28,10 +28,10 @@ require('telescope').setup {
       theme = 'ivy',
       layout_config = {
         preview_cutoff = 50
-      }
+      },
+      preview = true
     },
     live_grep = {
-      layout_strategy = 'vertical',
       layout_config = {
         preview_cutoff = 10
       },
@@ -49,6 +49,19 @@ require('telescope').setup {
     lsp_references = {
       layout_config = {
         preview_cutoff = 10
+      },
+      preview = true
+    },
+    diagnostics = {
+      layout_config = {
+        preview_cutoff = 10
+      },
+      preview = true
+    },
+    buffers = {
+      theme = 'ivy',
+      layout_config = {
+        preview_cutoff = 50
       },
       preview = true
     }
