@@ -79,6 +79,12 @@ return require('packer').startup(function(use)
     after = 'nvim-lspconfig'
   }
   use {'onsails/lspkind-nvim'}
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    -- event = 'BufReadPre',
+    config = function() require("trouble").setup {} end
+  }
   use {'williamboman/nvim-lsp-installer'}
   use {
       'norcalli/nvim-colorizer.lua', 
