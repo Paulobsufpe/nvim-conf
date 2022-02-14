@@ -28,6 +28,11 @@ map(
 map('v', '>', '>gv')
 map('v', '<', '<gv')
 
+-- LSP
+
+map('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
+map('n', '.R', ':lua vim.lsp.buf.rename()<CR>')
+
 -- Telescope
 
 map('n', 't', ':Telescope<CR>')

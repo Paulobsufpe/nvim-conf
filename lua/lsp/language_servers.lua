@@ -18,6 +18,11 @@ lsp_installer.on_server_ready(function(server)
       }
 
     }, opts)
+  elseif server.name == "sourcekit" then
+    opts = vim.tbl_deep_extend("force", {
+      single_file_support = true
+    }, opts)
   end
+
   server:setup(opts)
 end)
