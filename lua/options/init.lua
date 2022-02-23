@@ -1,6 +1,6 @@
--- vim.cmd("filetype plugin indent on")
+vim.cmd("filetype plugin indent on")
 vim.opt.termguicolors = true
-vim.o.shortmess = vim.o.shortmess .. 'c'
+-- vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.hidden = true
 vim.o.whichwrap = '<,>,[,],h,l'
 vim.o.pumheight = 10
