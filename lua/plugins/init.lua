@@ -94,7 +94,7 @@ return require('packer').startup(function(use)
   use {
     'terrortylor/nvim-comment',
     config = "require('nvim_comment-conf')",
-    event = "BufWinEnter"
+    event = "VimEnter"
   }
 
   use {
@@ -104,6 +104,8 @@ return require('packer').startup(function(use)
       end,
       after = 'nvim-lspconfig'
   }
+
+  use {'skywind3000/asyncrun.vim', event = "VimEnter"}
   
 
 end)
