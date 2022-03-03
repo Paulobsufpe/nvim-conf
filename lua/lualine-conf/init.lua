@@ -1,5 +1,5 @@
-if false then
-	require('custom1')
+if true then
+	require('lualine-conf/custom_bubbles_line')
 else
 	require'lualine'.setup({
 		options = {
