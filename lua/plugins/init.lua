@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
       'dracula/vim', as = 'dracula', 
       config = "vim.cmd('colorscheme dracula')"
   }
+  use {'catppuccin/nvim', as = 'catppuccin'}
 
   use {'junegunn/vim-easy-align'}
   use {
