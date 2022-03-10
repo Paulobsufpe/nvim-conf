@@ -23,7 +23,7 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
-      no_ignore = true,
+      -- no_ignore = true,
       theme = 'ivy',
       layout_config = {
         preview_cutoff = 50
