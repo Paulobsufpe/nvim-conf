@@ -8,13 +8,11 @@ require('telescope').setup {
 	layout_config = {
 	},
 	find_command = {
-      'rg', 
-      '--color=never',
-      '--no-heading', 
-      '--with-filename', 
-      '--line-number', 
-      '--column', 
-      '--smart-case'
+      'fd',
+      -- '-H',
+      '-I',
+      '-c never',
+      '-t f'
     },
     prompt_prefix = " ",
 	path_display = {},
@@ -25,6 +23,7 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
+      no_ignore = true,
       theme = 'ivy',
       layout_config = {
         preview_cutoff = 50
@@ -38,7 +37,7 @@ require('telescope').setup {
       preview = true
     },
     lsp_code_actions = {
-      layout_strategy =  'cursor',
+      layout_strategy = 'cursor',
       prompt_title = 'Actions',
       results_title = '',
       layout_config = {
