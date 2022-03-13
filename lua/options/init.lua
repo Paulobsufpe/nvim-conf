@@ -1,5 +1,5 @@
 vim.cmd("filetype plugin indent on")
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 -- vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.hidden = true
 vim.o.whichwrap = '<,>,[,],h,l'
@@ -33,5 +33,6 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 0
 vim.o.autoindent = true
-
+vim.o.autochdir = true
+vim.o.cinoptions = "l1"
 
