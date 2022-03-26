@@ -33,6 +33,6 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 0
 vim.o.autoindent = true
-vim.o.autochdir = true
+-- vim.o.autochdir = true
 vim.o.cinoptions = "l1"
 
