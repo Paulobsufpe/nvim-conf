@@ -1,6 +1,10 @@
+
+-- Lsp Installer
+
 local lsp_installer = require('nvim-lsp-installer')
 
 lsp_installer.on_server_ready(function(server)
+
   local capabilities = require('cmp_nvim_lsp')
     .update_capabilities(
       vim.lsp.protocol.make_client_capabilities())
@@ -20,9 +24,22 @@ lsp_installer.on_server_ready(function(server)
     }, opts)
   elseif server.name == "sourcekit" then
     opts = vim.tbl_deep_extend("force", {
-      single_file_support = true
+        filetypes = {"swift", "objective-c", "objective-cpp"},
+        single_file_support = true
     }, opts)
   end
 
   server:setup(opts)
+
 end)
+
+-- Lsp Config for system installed servers
+
+local lspconf = require('lspconfig')
+
+lspconf.clangd.setup{
+  filetypes = {"c", "cpp"},
+}
+
+lspconf.rust_analyzer.setup{}
+

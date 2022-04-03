@@ -1,4 +1,5 @@
 local wk = require("which-key")
-opts = {prefix = '<leader>'}
+local opts = {prefix = '<leader>'}
+local mappings
 wk.register(mappings, opts)
 
