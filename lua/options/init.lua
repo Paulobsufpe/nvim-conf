@@ -1,6 +1,8 @@
 vim.cmd("filetype plugin indent on")
+vim.g.netrw_banner=false
 vim.o.termguicolors = true
 -- vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.o.path = vim.o.path .. '**'
 vim.o.hidden = true
 vim.o.whichwrap = '<,>,[,],h,l'
 vim.o.pumheight = 10

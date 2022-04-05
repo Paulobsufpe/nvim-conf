@@ -106,7 +106,5 @@ return require('packer').startup(function(use)
       after = 'nvim-lspconfig'
   }
 
-  use {'skywind3000/asyncrun.vim', event = "VimEnter"}
-  
 
 end)
