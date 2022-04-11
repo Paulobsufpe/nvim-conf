@@ -1,5 +1,4 @@
 vim.cmd("filetype plugin indent on")
-vim.g.netrw_banner=false
 vim.o.termguicolors = true
 -- vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.path = vim.o.path .. '**'
@@ -38,3 +37,7 @@ vim.o.autoindent = true
 -- vim.o.autochdir = true
 vim.o.cinoptions = "l1"
 
+vim.g.netrw_banner=false
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}

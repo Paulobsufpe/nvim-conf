@@ -43,3 +43,5 @@ lspconf.clangd.setup{
 
 lspconf.rust_analyzer.setup{}
 
+lspconf.denols.setup{}
+
