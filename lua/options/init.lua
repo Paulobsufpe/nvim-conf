@@ -30,14 +30,17 @@ vim.wo.rnu = true
 -- vim.o.cursorline = true
 vim.wo.signcolumn = "yes"
 vim.o.tabstop = 4
-vim.o.expandtab = true
+vim.o.expandtab = false
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 0
 vim.o.autoindent = true
 -- vim.o.autochdir = true
 vim.o.cinoptions = "l1"
+vim.opt.listchars = {eol = '↵', tab = '» ', space = '.'}
+vim.o.list = true
 
-vim.g.netrw_banner=false
+vim.g.do_filetype_lua = 1
+vim.g.netrw_banner = false
 vim.g.markdown_fenced_languages = {
   "ts=typescript"
 }

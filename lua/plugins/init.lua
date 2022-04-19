@@ -69,9 +69,11 @@ return require('packer').startup(function(use)
   use {'hrsh7th/cmp-buffer'}
   use {'hrsh7th/nvim-cmp'}
   use {'hrsh7th/cmp-path'}
-  use {'hrsh7th/cmp-vsnip'}
-  use {'hrsh7th/vim-vsnip'}
-  use {'hrsh7th/vim-vsnip-integ'}
+  use {'L3MON4D3/LuaSnip'}
+  use {'saadparwaiz1/cmp_luasnip' }
+  -- use {'hrsh7th/cmp-vsnip'}
+  -- use {'hrsh7th/vim-vsnip'}
+  -- use {'hrsh7th/vim-vsnip-integ'}
   use {'rafamadriz/friendly-snippets'}
   use {
     'j-hui/fidget.nvim',
