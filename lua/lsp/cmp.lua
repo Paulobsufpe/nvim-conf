@@ -77,7 +77,21 @@ cmp.setup({
     {name = 'buffer'},
     {name = 'path'}
   },
-  formatting = {format = lspkind.cmp_format({with_text = true, maxwidth = 50})}
+  formatting = {
+    format = lspkind.cmp_format({
+      with_text = true, 
+      maxwidth = 56,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+        luasnip = "[snip]",
+        -- gh_issues = "[issues]",
+        -- tn = "[TabNine]",
+      },
+    })
+  }
 })
 
 require("luasnip.loaders.from_vscode").lazy_load()
