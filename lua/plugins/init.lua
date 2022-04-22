@@ -10,6 +10,7 @@ return require('packer').startup(function(use)
   use {'catppuccin/nvim', as = 'catppuccin'}
 
   use {'junegunn/vim-easy-align'}
+  use {'nvim-lua/plenary.nvim'}
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
@@ -97,8 +98,9 @@ return require('packer').startup(function(use)
   use {
     'terrortylor/nvim-comment',
     config = "require('nvim_comment-conf')",
-    event = "VimEnter"
+    event = "BufReadPost"
   }
+  use {'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim'}
 
   use {
       'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim', 

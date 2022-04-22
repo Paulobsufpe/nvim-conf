@@ -9,7 +9,7 @@ require('telescope').setup {
 	},
 	find_command = {
       'fd',
-      -- '-H',
+      '-H',
       '-I',
       '-c never',
       '-t f'
@@ -18,7 +18,7 @@ require('telescope').setup {
 	path_display = {},
 	color_devicons = true,
 	set_env = {['COLORTERM'] = 'truecolor'},
-	mappings = { i = { ["<esc>"] = actions.close } },
+	-- mappings = { i = { ["<esc>"] = actions.close } },
 	winblend = 0
   },
   pickers = {
