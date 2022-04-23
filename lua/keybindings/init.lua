@@ -22,7 +22,7 @@ map('n', '<leader>d', ':ToggleDiag<CR>')
 map(
 	'n', '<leader>h', 
 	":lua vim.cmd(vim.b.current_syntax and 'syntax off | TSBufEnable highlight' or 'syntax on | TSBufDisable highlight')<CR>",
-	{silent = true}
+	{silent=true}
 )
 
 map('v', '>', '>gv')
@@ -47,6 +47,7 @@ map('n', '.a', ":Telescope lsp_range_code_actions<CR>")
 map('n', '.r', ":Telescope lsp_references<CR>")
 map('n', '.d', ":Telescope lsp_definitions<CR>")
 map('n', '.s', ":Telescope lsp_dynamic_workspace_symbols<CR>")
+map('n', '.S', ":Telescope symbols<CR>")
 map('n', '.,', ":Telescope diagnostics<CR>")
 
 -- Trouble
