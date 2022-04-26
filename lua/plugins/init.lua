@@ -22,12 +22,12 @@ return require('packer').startup(function(use)
   use {
       'glts/vim-radical', 
       requires = {'glts/vim-magnum'}, 
-      event = 'BufWinEnter'
+      event = 'VimEnter'
   }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
-    event = "BufWinEnter",
+    event = "BufEnter",
     config = "require('tree-sitter-conf')"
   }
   use 'kyazdani42/nvim-web-devicons'
@@ -86,7 +86,6 @@ return require('packer').startup(function(use)
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    -- event = 'BufReadPre',
     config = function() require("trouble").setup {} end
   }
   use {'williamboman/nvim-lsp-installer'}
@@ -100,7 +99,11 @@ return require('packer').startup(function(use)
     config = "require('nvim_comment-conf')",
     event = "BufReadPost"
   }
-  use {'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim'}
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    event = 'VimEnter'
+  }
 
   use {
       'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim', 

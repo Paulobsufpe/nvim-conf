@@ -7,8 +7,9 @@ local function set_c_commentstring()
 end
 
 vim.api.nvim_create_autocmd(
-	"BufEnter *.c,*.cpp,*.h", 
+	'BufEnter', 
 	{
+		pattern = {'*.c', '*.cpp', '*.h'},
 		callback = function ()
 			set_c_commentstring()
 		end,
@@ -16,8 +17,9 @@ vim.api.nvim_create_autocmd(
 	}
 )
 vim.api.nvim_create_autocmd(
-	"BufFilePost *c,*.cpp,*.h", 
+	'BufFilePost', 
 	{
+		pattern = {'*.c', '*.cpp', '*.h'},
 		callback = function ()
 			set_c_commentstring()
 		end,
