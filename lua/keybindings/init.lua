@@ -50,6 +50,8 @@ map('n', '.s', ":Telescope lsp_dynamic_workspace_symbols<CR>")
 map('n', '.S', ":Telescope symbols<CR>")
 map('n', '.,', ":Telescope diagnostics<CR>")
 
+map('n', './', ":lua vim.lsp.buf.code_action()<CR>")
+
 -- Trouble
 
 map('n', ',,', ":Trouble workspace_diagnostics<CR>")
