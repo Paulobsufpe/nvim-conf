@@ -36,7 +36,7 @@ map('n', '.R', ':lua vim.lsp.buf.rename()<CR>')
 -- Telescope
 
 map('n', '.t', ':Telescope<CR>')
-map('n', '<C-f>', ":Telescope current_buffer_fuzzy_find<CR>")
+map('n', '.F', ":Telescope current_buffer_fuzzy_find<CR>")
 map('n', '.f', ":Telescope find_files<CR>")
 map('n', '.g', ":Telescope live_grep<CR>")
 map('n', '.b', ":Telescope buffers<CR>")
