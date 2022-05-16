@@ -16,6 +16,9 @@ O gerenciador de plugins utilizado é o [packer.nvim](https://github.com/wbthoma
 - Emojis 😀 🥰 ☂️  🌈 ;
 - ... e um pouco mais (a documentar).
 
+## Obs.:
+Todo o código em Vim Script não faz parte da configuração em si. São arquivos externos e independentes de *syntax* e indentação, por exemplo, entre outros.
+
 ## Agradecimentos e menções
 
 - Thanks to [Neil Sabde](https://github.com/hackorum) for making his [ingenious setup](https://github.com/hackorum/nfs) and journey available on [Youtube](https://youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V).
