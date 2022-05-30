@@ -4,7 +4,7 @@ local previewers = require('telescope.previewers')
 require('telescope').setup {
   defaults = {
     layout_strategy = 'vertical',
-    preview = false,
+    -- preview = false,
 	layout_config = {
 	},
 	find_command = {
