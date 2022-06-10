@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
 	use {'dracula/vim', as = 'dracula'}
 	use {
 		'catppuccin/nvim', as = 'catppuccin',
-		config = function()
+		config = function ()
 			require("catppuccin").setup {}
 			vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 			vim.cmd[[colorscheme catppuccin]]
@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
 	use {
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
-		config = function() require("todo-comments").setup {} end,
+		config = function () require("todo-comments").setup {} end,
 		event = 'BufRead'
 	}
 	use {'sheerun/vim-polyglot', event = 'BufRead'}
@@ -32,26 +32,26 @@ return require('packer').startup(function(use)
 		'nvim-treesitter/nvim-treesitter',
 		run = ":TSUpdate",
 		event = "BufEnter",
-		config = "require('tree-sitter-conf')"
+		config = function () require("tree-sitter-conf") end
 	}
 	use 'kyazdani42/nvim-web-devicons'
 	use {
 		'hoob3rt/lualine.nvim',
 		requires = {'kyazdani42/nvim-web-devicons', opt = true},
 		event = "BufWinEnter",
-		config = "require('lualine-conf')"
+		config = function () require("lualine-conf") end
 	}
 	use {
 		'akinsho/bufferline.nvim',
 		requires = 'kyazdani42/nvim-web-devicons',
 		event = "BufWinEnter",
-		config = "require('bufferline-conf')"
+		config = function () require("bufferline-conf") end
 	}
 	use {
 		'kyazdani42/nvim-tree.lua',
 		requires = 'kyazdani42/nvim-web-devicons',
 		cmd = "NvimTreeToggle",
-		config = "require('nvim-tree-conf')"
+		config = function () require("nvim-tree").setup {} end
 	}
 	
 	-- use {'folke/which-key.nvim', event = "BufWinEnter", config = "require('whichkey-config')"}
@@ -59,7 +59,7 @@ return require('packer').startup(function(use)
 		'nvim-telescope/telescope.nvim',
 		requires = {'nvim-lua/plenary.nvim'},
 		cmd = "Telescope",
-		config = "require('telescope-conf')",
+		config = function () require("telescope-conf") end,
 		event = 'BufWinEnter'
 	}
 	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -67,7 +67,7 @@ return require('packer').startup(function(use)
 
 	use {
 		'neovim/nvim-lspconfig', 
-		config = "require('lsp')", 
+		config = function () require('lsp') end,
 		event = 'BufReadPost'
 	}
 	use {'hrsh7th/cmp-nvim-lsp'}
@@ -80,24 +80,24 @@ return require('packer').startup(function(use)
 	use {
 		'j-hui/fidget.nvim',
 		requires = 'neovim/nvim-lspconfig',
-		config = function() require("fidget").setup {} end,
+		config = function () require("fidget").setup {} end,
 		after = 'nvim-lspconfig'
 	}
 	use {'onsails/lspkind-nvim'}
 	use {
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
-		config = function() require("trouble").setup {} end
+		config = function () require("trouble").setup {} end
 	}
 	use {'williamboman/nvim-lsp-installer'}
 	use {
 		'norcalli/nvim-colorizer.lua', 
-		config = "require('colorizer-conf')", 
+		config = function () require("colorizer-conf") end,
 		event = "BufRead"
 	}
 	use {
 		'terrortylor/nvim-comment',
-		config = "require('nvim_comment-conf')",
+		config = function () require("nvim_comment-conf") end,
 		event = "BufReadPost"
 	}
 	use {
@@ -108,7 +108,7 @@ return require('packer').startup(function(use)
 
 	use {
 		'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim', 
-		config = function() 
+		config = function () 
 		  require("toggle_lsp_diagnostics").init { start_on = false } 
 		end,
 		after = 'nvim-lspconfig'
