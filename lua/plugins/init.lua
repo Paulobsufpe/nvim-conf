@@ -109,7 +109,7 @@ return require('packer').startup(function(use)
 	use {
 		'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim', 
 		config = function () 
-		  require("toggle_lsp_diagnostics").init { start_on = false } 
+			require("toggle_lsp_diagnostics").init { start_on = false } 
 		end,
 		after = 'nvim-lspconfig'
 	}

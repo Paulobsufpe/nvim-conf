@@ -1,47 +1,45 @@
-
--- Lsp Installer
-
 local lsp_installer = require('nvim-lsp-installer')
-
-lsp_installer.on_server_ready(function(server)
-
-  local capabilities = require('cmp_nvim_lsp')
-    .update_capabilities(
-      vim.lsp.protocol.make_client_capabilities())
-
-  local opts = {capabilities = capabilities}
-  if server.name == "sumneko_lua" then
-    opts = vim.tbl_deep_extend("force", {
-      settings = {
-        Lua = {
-          runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
-          diagnostics = {globals = {'vim'}},
-          workspace = {library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false},
-          telemetry = {enable = false}
-        }
-      }
-
-    }, opts)
-  elseif server.name == "sourcekit" then
-    opts = vim.tbl_deep_extend("force", {
-        filetypes = {"swift", "objective-c", "objective-cpp"},
-        single_file_support = true
-    }, opts)
-  end
-
-  server:setup(opts)
-
-end)
-
--- Lsp Config for system installed servers
-
 local lspconf = require('lspconfig')
 
-lspconf.clangd.setup{
-  filetypes = {"c", "cpp"},
-}
+local capabilities = require('cmp_nvim_lsp')
+	.update_capabilities(
+		vim.lsp.protocol.make_client_capabilities())
 
-lspconf.rust_analyzer.setup{}
+lsp_installer.setup({ capabilities = capabilities })
 
-lspconf.denols.setup{}
+lspconf.sumneko_lua.setup({
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+			diagnostics = { globals = { 'vim' } },
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false
+			},
+			telemetry = { enable = false }
+		}
+	}
+})
 
+lspconf.sourcekit.setup({
+	capabilities = capabilities,
+	filetypes = { "swift", "objective-c", "objective-cpp" },
+	single_file_support = true
+})
+
+lspconf.clangd.setup({
+	capabilities = capabilities,
+	filetypes = { "c", "cpp" }
+})
+
+
+lspconf.rust_analyzer.setup({
+	autostart = false,
+	capabilities = capabilities
+})
+
+
+lspconf.denols.setup({
+	capabilities = capabilities
+})

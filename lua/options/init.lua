@@ -29,7 +29,7 @@ vim.wo.number = true
 vim.wo.rnu = true
 -- vim.o.cursorline = true
 vim.wo.signcolumn = "yes"
-vim.o.tabstop = 4
+vim.o.tabstop = 2
 vim.o.expandtab = false
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 0
@@ -42,5 +42,5 @@ vim.o.list = true
 vim.g.do_filetype_lua = 1
 vim.g.netrw_banner = false
 vim.g.markdown_fenced_languages = {
-  "ts=typescript"
+	"ts=typescript"
 }
