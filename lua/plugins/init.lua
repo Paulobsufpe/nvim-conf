@@ -3,20 +3,48 @@ return require('packer').startup(function(use)
 	use { 'wbthomason/packer.nvim' }
 
 	use { 'rktjmp/lush.nvim' }
-	use { 'rose-pine/neovim' }
-	use { 'marko-cerovac/material.nvim' }
-	use { 'Mofiqul/dracula.nvim', as = 'dracula' }
 	use {
-		"briones-gabriel/darcula-solid.nvim", 
-		requires = "rktjmp/lush.nvim"
+		'rose-pine/neovim', as = 'rose-pine', tag = 'v1.*',
+		-- config = function()
+		-- 	vim.cmd [[colorscheme rose-pine]]
+		-- end
+	}
+	use { 
+		'marko-cerovac/material.nvim',
+		-- config = function()
+		-- 	-- darker, lighter, oceanic, palenight, deep ocean
+		-- 	-- vim.g.material_style = 'palenight'
+		-- 	vim.cmd [[colorscheme material]]
+		-- end
+	}
+	use { 
+		'Mofiqul/dracula.nvim', as = 'dracula',
+		-- config = function()
+		-- 	vim.cmd [[colorscheme dracula]]
+		-- end
+	}
+	use {
+		"briones-gabriel/darcula-solid.nvim",
+		requires = "rktjmp/lush.nvim",
+		config = function()
+			vim.cmd [[colorscheme darcula-solid]]
+		end
 	}
 	use {
 		'catppuccin/nvim', as = 'catppuccin',
-		config = function()
-			require("catppuccin").setup {}
-			vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-			vim.cmd [[colorscheme catppuccin]]
-		end
+		-- config = function()
+		-- 	require("catppuccin").setup {}
+		-- -- latte, frappe, macchiato, mocha
+		-- 	vim.g.catppuccin_flavour = "macchiato" 
+		-- 	vim.cmd [[colorscheme catppuccin]]
+		-- end
+	}
+	use 'kyazdani42/nvim-web-devicons'
+	use {
+		'hoob3rt/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		event = "BufWinEnter",
+		config = function() require("lualine-conf") end
 	}
 
 	use { 'junegunn/vim-easy-align' }
@@ -39,13 +67,6 @@ return require('packer').startup(function(use)
 		run = ":TSUpdate",
 		event = "BufEnter",
 		config = function() require("tree-sitter-conf") end
-	}
-	use 'kyazdani42/nvim-web-devicons'
-	use {
-		'hoob3rt/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-		event = "BufWinEnter",
-		config = function() require("lualine-conf") end
 	}
 	use {
 		'akinsho/bufferline.nvim', tag = "v2.*",
