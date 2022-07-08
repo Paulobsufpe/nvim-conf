@@ -22,6 +22,11 @@ lspconf.sumneko_lua.setup({
 	}
 })
 
+lspconf.jdtls.setup({
+	autostart = false,
+	capabilities = capabilities
+})
+
 lspconf.sourcekit.setup({
 	capabilities = capabilities,
 	filetypes = { "swift", "objective-c", "objective-cpp" },

@@ -1,4 +1,3 @@
-
 require('nvim_comment').setup {}
 
 local group_commentstring = vim.api.nvim_create_augroup("set-commentstring-ag", {clear = true})

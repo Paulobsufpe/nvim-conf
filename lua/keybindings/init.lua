@@ -1,4 +1,3 @@
-
 vim.g.mapleader = '\\'
 
 local function map(mode, lhs, rhs, opts)

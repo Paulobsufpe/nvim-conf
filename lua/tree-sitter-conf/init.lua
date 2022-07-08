@@ -1,8 +1,10 @@
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = {"c", "rust", "python", "lua", 
-						"java", "julia", "html", "json",
-						"c_sharp"},
-	
+require 'nvim-treesitter.configs'.setup {
+	ensure_installed = {
+		"c", "rust", "python", "lua",
+		"java", "julia", "html", "json",
+		"c_sharp"
+	},
+
 	highlight = {
 		enable = true,
 		-- list of language that will be disabled
@@ -10,6 +12,6 @@ require'nvim-treesitter.configs'.setup {
 		additional_vim_regex_highlighting = false,
 	},
 
-	incremental_selection = {enable = false},
-	indent = {enable = false}
+	incremental_selection = { enable = false },
+	indent = { enable = false }
 }
