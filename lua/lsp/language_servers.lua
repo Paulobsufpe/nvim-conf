@@ -38,13 +38,17 @@ lspconf.clangd.setup({
 	filetypes = { "c", "cpp" }
 })
 
-
 lspconf.rust_analyzer.setup({
 	autostart = false,
 	capabilities = capabilities
 })
 
-
 lspconf.denols.setup({
 	capabilities = capabilities
+})
+
+lspconf.metals.setup({
+	capabilities = capabilities,
+	autostart = false,
+	single_file_support = true
 })
