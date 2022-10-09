@@ -39,6 +39,7 @@ lspconf.clangd.setup({
 })
 
 lspconf.rust_analyzer.setup({
+	cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
 	autostart = false,
 	capabilities = capabilities
 })
