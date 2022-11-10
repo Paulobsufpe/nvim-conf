@@ -35,8 +35,11 @@ lspconf.omnisharp.setup({
 		'/Users/paulobs/.local/share/nvim/lsp_servers\
 		/omnisharp/omnisharp/OmniSharp.dll'
 	},
-	capabilities = capabilities,
-	single_file_support = true
+	capabilities = capabilities
+})
+
+lspconf.fsautocomplete.setup({
+	capabilities = capabilities
 })
 
 lspconf.jdtls.setup({
@@ -46,7 +49,6 @@ lspconf.jdtls.setup({
 lspconf.sourcekit.setup({
 	capabilities = capabilities,
 	filetypes = { 'swift', 'objective-c', 'objective-cpp' },
-	single_file_support = true
 })
 
 lspconf.clangd.setup({
@@ -65,6 +67,5 @@ lspconf.denols.setup({
 
 lspconf.metals.setup({
 	autostart = false,
-	capabilities = capabilities,
-	single_file_support = true
+	capabilities = capabilities
 })
