@@ -3,8 +3,8 @@ require 'nvim-treesitter.configs'.setup {
 		"c", "rust", "cpp", "java",
 		"lua", "julia", "html", "json",
 		"c_sharp", "scala", "python", "dot",
-		"make", "markdown", "javascript", "typescript",
-		"bash", "css", "yaml"
+		"markdown", "javascript", "typescript",
+		"css", "yaml"
 	},
 
 	highlight = {
