@@ -141,4 +141,12 @@ return require('packer').startup(function(use)
 		after = 'nvim-lspconfig'
 	}
 
+	use { 'gluon-lang/vim-gluon' }
+	use {
+		'fsharp/vim-fsharp',
+		ft = 'fsharp',
+		run = 'make fsautocomplete'
+	}
+	use { 'shirk/vim-gas' }
+
 end)
