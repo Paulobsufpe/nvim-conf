@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
 		-- 	vim.cmd [[colorscheme catppuccin]]
 		-- end
 	}
+	use {'sonph/onehalf', rtp = 'vim'}
 	use 'kyazdani42/nvim-web-devicons'
 	use {
 		'hoob3rt/lualine.nvim',
