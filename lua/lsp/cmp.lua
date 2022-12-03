@@ -74,7 +74,8 @@ cmp.setup({
 		-- For ultisnips user.
 		-- { name = 'ultisnips' },
 		{ name = 'buffer' },
-		{ name = 'path' }
+		{ name = 'path' },
+		{ name = 'nvim_lsp_signature_help' }
 	},
 	formatting = {
 		format = lspkind.cmp_format({
@@ -87,7 +88,6 @@ cmp.setup({
 				buffer = "[buf]",
 				path = "[path]",
 				-- gh_issues = "[issues]",
-				-- tn = "[TabNine]",
 			},
 		})
 	}
