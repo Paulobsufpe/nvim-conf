@@ -4,7 +4,7 @@ return require('packer').startup(function(use)
 
 	use { 'rktjmp/lush.nvim' }
 	use {
-		'rose-pine/neovim', as = 'rose-pine', tag = 'v1.*',
+		'rose-pine/neovim', as = 'rose-pine', --, tag = 'v1.*',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme rose-pine]]
 		-- end
@@ -40,6 +40,31 @@ return require('packer').startup(function(use)
 		-- end
 	}
 	use {'sonph/onehalf', rtp = 'vim'}
+	use {
+		'folke/tokyonight.nvim',
+		-- config = function()
+		-- 	vim.cmd [[colorscheme tokyonight]]
+		-- end
+	}
+	use {
+		'rebelot/kanagawa.nvim'
+		-- config = function()
+		-- 	vim.cmd [[colorscheme kanagawa]]
+		-- end
+	}
+	use {
+		'EdenEast/nightfox.nvim'
+		-- config = function()
+		-- 	vim.cmd [[colorscheme nightfox]]
+		-- end
+	}
+	use {
+		'projekt0n/github-nvim-theme'
+		-- config = function()
+		-- 	require('github-theme').setup()
+		-- end
+	}
+
 	use 'kyazdani42/nvim-web-devicons'
 	use {
 		'hoob3rt/lualine.nvim',
@@ -102,6 +127,7 @@ return require('packer').startup(function(use)
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/nvim-cmp' }
 	use { 'hrsh7th/cmp-path' }
+	use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
 	use { 'L3MON4D3/LuaSnip' }
 	use { 'saadparwaiz1/cmp_luasnip' }
 	use { 'rafamadriz/friendly-snippets' }
