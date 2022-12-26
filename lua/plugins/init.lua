@@ -11,11 +11,11 @@ return require('packer').startup(function(use)
 	}
 	use { 
 		'marko-cerovac/material.nvim',
-		-- config = function()
-		-- 	-- darker, lighter, oceanic, palenight, deep ocean
-		-- 	-- vim.g.material_style = 'palenight'
-		-- 	vim.cmd [[colorscheme material]]
-		-- end
+		config = function()
+			-- darker, lighter, oceanic, palenight, deep ocean
+			-- vim.g.material_style = 'palenight'
+			vim.cmd [[colorscheme material]]
+		end
 	}
 	use { 
 		'Mofiqul/dracula.nvim', as = 'dracula',
@@ -26,9 +26,9 @@ return require('packer').startup(function(use)
 	use {
 		"briones-gabriel/darcula-solid.nvim",
 		requires = "rktjmp/lush.nvim",
-		config = function()
-			vim.cmd [[colorscheme darcula-solid]]
-		end
+		-- config = function()
+		-- 	vim.cmd [[colorscheme darcula-solid]]
+		-- end
 	}
 	use {
 		'catppuccin/nvim', as = 'catppuccin',
@@ -143,6 +143,8 @@ return require('packer').startup(function(use)
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
 	}
+	use { 'folke/neodev.nvim' }
+	use { 'folke/neoconf.nvim' }
 	use { 'williamboman/nvim-lsp-installer' }
 	use {
 		'norcalli/nvim-colorizer.lua',

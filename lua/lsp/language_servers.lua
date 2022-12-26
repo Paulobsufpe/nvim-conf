@@ -1,3 +1,5 @@
+require('neodev').setup {}
+require('neoconf').setup {}
 local lsp_installer = require('nvim-lsp-installer')
 local lspconf = require('lspconfig')
 
@@ -51,7 +53,16 @@ lspconf.sourcekit.setup({
 	filetypes = { 'swift', 'objective-c', 'objective-cpp' },
 })
 
+local function get_clangd()
+	local clangd_path = os.getenv("CLANGD")
+	if clangd_path == nil then
+		return "clangd"
+	else
+		return clangd_path
+	end
+end
 lspconf.clangd.setup({
+	cmd = { get_clangd() },
 	capabilities = capabilities,
 	filetypes = { 'c', 'cpp' }
 })
