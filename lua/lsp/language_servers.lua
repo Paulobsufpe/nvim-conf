@@ -20,7 +20,10 @@ lspconf.sumneko_lua.setup({
 			workspace = {
 				library = vim.tbl_extend(
 					"force", vim.api.nvim_get_runtime_file('', true),
-					{ ["/usr/local/share/lua"] = true }
+					{
+						["/usr/local/lib/lua/5.4"] = true,
+						["/usr/local/share/lua/5.4"] = true
+					}
 				),
 				-- checkThirdParty = false
 			},
@@ -28,13 +31,6 @@ lspconf.sumneko_lua.setup({
 		}
 	}
 })
-
-function get_lua_paths()
-	local lua_path = os.getenv("LUA_PATH")
-	if not lua_path then
-		os.execute("source <(luarocks path)")
-	end
-end
 
 lspconf.pylsp.setup({
 	capabilities = capabilities
