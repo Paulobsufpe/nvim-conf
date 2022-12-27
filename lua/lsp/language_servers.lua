@@ -36,8 +36,6 @@ function get_lua_paths()
 	end
 end
 
-get_lua_paths()
-
 lspconf.pylsp.setup({
 	capabilities = capabilities
 })
