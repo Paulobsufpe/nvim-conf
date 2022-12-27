@@ -4,10 +4,9 @@ local lsp_installer = require('nvim-lsp-installer')
 local lspconf = require('lspconfig')
 
 local capabilities = require('cmp_nvim_lsp')
-		.default_capabilities(
-			vim.lsp.protocol.make_client_capabilities())
+		.default_capabilities()
 
-lsp_installer.setup({ capabilities = capabilities })
+lsp_installer.setup {}
 
 lspconf.sumneko_lua.setup({
 	capabilities = capabilities,
@@ -15,15 +14,12 @@ lspconf.sumneko_lua.setup({
 		Lua = {
 			runtime = {
 				version = 'LuaJIT',
-				path = vim.tbl_extend(
-					"keep", vim.split(package.path, ';'),
-					vim.split(package.cpath, ';')
-				)
+				path = vim.split(package.path, ';')
 			},
 			diagnostics = { globals = { 'vim' } },
 			workspace = {
 				library = vim.tbl_extend(
-					"keep", vim.api.nvim_get_runtime_file('', true),
+					"force", vim.api.nvim_get_runtime_file('', true),
 					{ ["/usr/local/share/lua"] = true }
 				),
 				-- checkThirdParty = false
@@ -32,8 +28,15 @@ lspconf.sumneko_lua.setup({
 		}
 	}
 })
-package.path = package.path .. ';/usr/local/Cellar/luarocks/3.9.1/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/Users/paulobs/.luarocks/share/lua/5.4/?.lua;/Users/paulobs/.luarocks/share/lua/5.4/?/init.lua'
-package.cpath = package.cpath .. ';/usr/local/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;./?.so;/Users/paulobs/.luarocks/lib/lua/5.4/?.so'
+
+function get_lua_paths()
+	local lua_path = os.getenv("LUA_PATH")
+	if not lua_path then
+		os.execute("source <(luarocks path)")
+	end
+end
+
+get_lua_paths()
 
 lspconf.pylsp.setup({
 	capabilities = capabilities
