@@ -4,8 +4,8 @@ local lsp_installer = require('nvim-lsp-installer')
 local lspconf = require('lspconfig')
 
 local capabilities = require('cmp_nvim_lsp')
-	.default_capabilities(
-		vim.lsp.protocol.make_client_capabilities())
+		.default_capabilities(
+			vim.lsp.protocol.make_client_capabilities())
 
 lsp_installer.setup({ capabilities = capabilities })
 
@@ -13,19 +13,27 @@ lspconf.sumneko_lua.setup({
 	capabilities = capabilities,
 	settings = {
 		Lua = {
-			runtime = { 
-				version = 'LuaJIT', 
-				path = vim.split(package.path, ';') 
+			runtime = {
+				version = 'LuaJIT',
+				path = vim.tbl_extend(
+					"keep", vim.split(package.path, ';'),
+					vim.split(package.cpath, ';')
+				)
 			},
 			diagnostics = { globals = { 'vim' } },
 			workspace = {
-				library = vim.api.nvim_get_runtime_file('', true),
-				checkThirdParty = false
+				library = vim.tbl_extend(
+					"keep", vim.api.nvim_get_runtime_file('', true),
+					{ ["/usr/local/share/lua"] = true }
+				),
+				-- checkThirdParty = false
 			},
 			telemetry = { enable = false }
 		}
 	}
 })
+package.path = package.path .. ';/usr/local/Cellar/luarocks/3.9.1/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/Users/paulobs/.luarocks/share/lua/5.4/?.lua;/Users/paulobs/.luarocks/share/lua/5.4/?/init.lua'
+package.cpath = package.cpath .. ';/usr/local/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;./?.so;/Users/paulobs/.luarocks/lib/lua/5.4/?.so'
 
 lspconf.pylsp.setup({
 	capabilities = capabilities
@@ -33,7 +41,7 @@ lspconf.pylsp.setup({
 
 lspconf.omnisharp.setup({
 	cmd = {
-		'dotnet', 
+		'dotnet',
 		'/Users/paulobs/.local/share/nvim/lsp_servers\
 		/omnisharp/omnisharp/OmniSharp.dll'
 	},
@@ -61,6 +69,7 @@ local function get_clangd()
 		return clangd_path
 	end
 end
+
 lspconf.clangd.setup({
 	cmd = { get_clangd() },
 	capabilities = capabilities,
