@@ -8,7 +8,48 @@ local capabilities = require('cmp_nvim_lsp')
 
 lsp_installer.setup {}
 
+-- Mappings
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
+map('n', '<space>e', vim.diagnostic.open_float, opts)
+map('n', '[d', vim.diagnostic.goto_prev, opts)
+map('n', ']d', vim.diagnostic.goto_next, opts)
+map('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+	-- Enable completion triggered by <c-x><c-o>
+	-- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+	-- Mappings.
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	map('n', 'gD', vim.lsp.buf.declaration, bufopts)
+	map('n', 'gd', vim.lsp.buf.definition, bufopts)
+	map('n', 'K', vim.lsp.buf.hover, bufopts)
+	map('n', 'gi', vim.lsp.buf.implementation, bufopts)
+	map('n', 'gr', vim.lsp.buf.references, bufopts)
+
+	map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+	map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+	map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+	map('n', '<space>wl', function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, bufopts)
+	map('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+	map('n', '<space>R', vim.lsp.buf.rename, bufopts)
+	map('n', '<space>A', vim.lsp.buf.code_action, bufopts)
+	map('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
+end
+	map('n', '<space>.', ":lua vim.lsp.buf.", bufopts)
+
+-- End Mappings
+
 lspconf.sumneko_lua.setup({
+	on_attach = on_attach,
+	autostart = false,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -22,10 +63,10 @@ lspconf.sumneko_lua.setup({
 					"force", vim.api.nvim_get_runtime_file('', true),
 					{
 						["/usr/local/lib/lua/5.4"] = true,
-						["/usr/local/share/lua/5.4"] = true
+						["/usr/local/share/lua/5.4"] = true,
 					}
 				),
-				-- checkThirdParty = false
+				checkThirdParty = true
 			},
 			telemetry = { enable = false }
 		}
@@ -33,10 +74,15 @@ lspconf.sumneko_lua.setup({
 })
 
 lspconf.pylsp.setup({
+	on_attach = on_attach,
+	autostart = false,
 	capabilities = capabilities
 })
 
+--[[
 lspconf.omnisharp.setup({
+	on_attach = on_attach,
+	autostart = false,
 	cmd = {
 		'dotnet',
 		'/Users/paulobs/.local/share/nvim/lsp_servers\
@@ -44,16 +90,23 @@ lspconf.omnisharp.setup({
 	},
 	capabilities = capabilities
 })
+]]
 
 lspconf.fsautocomplete.setup({
+	on_attach = on_attach,
+	autostart = false,
 	capabilities = capabilities
 })
 
 lspconf.jdtls.setup({
+	on_attach = on_attach,
+	autostart = false,
 	capabilities = capabilities
 })
 
 lspconf.sourcekit.setup({
+	on_attach = on_attach,
+	autostart = false,
 	capabilities = capabilities,
 	filetypes = { 'swift', 'objective-c', 'objective-cpp' },
 })
@@ -68,21 +121,34 @@ local function get_clangd()
 end
 
 lspconf.clangd.setup({
+	on_attach = on_attach,
+	autostart = false,
 	cmd = { get_clangd() },
 	capabilities = capabilities,
 	filetypes = { 'c', 'cpp' }
 })
 
 lspconf.rust_analyzer.setup({
+	on_attach = on_attach,
+	autostart = false,
 	cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
 	capabilities = capabilities
 })
 
 lspconf.denols.setup({
+	on_attach = on_attach,
+	autostart = false,
 	capabilities = capabilities
 })
 
 lspconf.metals.setup({
+	on_attach = on_attach,
+	autostart = false,
+	capabilities = capabilities
+})
+
+lspconf.texlab.setup({
+	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities
 })

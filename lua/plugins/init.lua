@@ -64,6 +64,12 @@ return require('packer').startup(function(use)
 		-- 	require('github-theme').setup()
 		-- end
 	}
+	use {
+		'AlexvZyl/nordic.nvim',
+		-- config = function()
+		-- 	require('nordic').load()
+		-- end
+	}
 
 	use 'kyazdani42/nvim-web-devicons'
 	use {
@@ -127,6 +133,8 @@ return require('packer').startup(function(use)
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/nvim-cmp' }
 	use { 'hrsh7th/cmp-path' }
+	use { 'hrsh7th/cmp-omni' }
+	use { 'hrsh7th/cmp-nvim-lua' }
 	use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
 	use { 'L3MON4D3/LuaSnip' }
 	use { 'saadparwaiz1/cmp_luasnip' }
@@ -160,6 +168,22 @@ return require('packer').startup(function(use)
 		'sindrets/diffview.nvim',
 		requires = 'nvim-lua/plenary.nvim',
 		event = 'VimEnter'
+	}
+	use {
+		'lukas-reineke/indent-blankline.nvim',
+		config = function ()
+			require("indent_blankline").setup {
+				use_treesitter = true,
+				-- show_current_context = true,
+				-- show_current_context_start = true,
+				show_end_of_line = true
+			}
+		end,
+		after = 'nvim-treesitter'
+	}
+	use {
+		'windwp/nvim-autopairs',
+		config = function() require("nvim-autopairs").setup {} end
 	}
 
 	use {

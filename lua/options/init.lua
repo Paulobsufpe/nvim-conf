@@ -1,4 +1,4 @@
-vim.cmd("filetype plugin indent on")
+-- vim.cmd("filetype plugin indent on")
 vim.o.termguicolors = true
 -- vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.path = vim.o.path .. '**'
@@ -30,17 +30,26 @@ vim.wo.rnu = true
 -- vim.o.cursorline = true
 vim.wo.signcolumn = "yes"
 vim.o.tabstop = 2
+vim.o.shiftwidth = 0
 vim.o.expandtab = false
-vim.o.shiftwidth = 4
 vim.o.softtabstop = 0
 vim.o.autoindent = true
 -- vim.o.autochdir = true
 vim.o.cinoptions = "l1"
-vim.opt.listchars = {eol = '↵', tab = '» ', space = '.'}
-vim.o.list = true
+-- vim.o.list = true
+-- vim.opt.listchars = {eol = '↴', tab = '» ', space = '.'}
+vim.opt.listchars = { eol = '↵', tab = '» ', space = '.' }
 
 vim.g.do_filetype_lua = 1
 vim.g.netrw_banner = false
 vim.g.markdown_fenced_languages = {
 	"ts=typescript"
 }
+vim.g.python3_host_prog = "python3.11"
+
+-- NOTE: setup omnifunc without lua (i dont know other way)
+-- vim.api.nvim_set_option('omnifunc', 'v:syntaxcomplete#Complete') -- não funciona
+vim.cmd[[set omnifunc=syntaxcomplete#Complete]]
+
+vim.cmd[[let g:opamshare = substitute(system('opam var share'),'\n$','','''')]]
+vim.cmd[[execute "set rtp+=" . g:opamshare . "/merlin/vim"]]

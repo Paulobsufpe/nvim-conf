@@ -79,3 +79,23 @@ require('telescope').setup {
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 
+
+local map = vim.keymap.set
+builtin = require('telescope.builtin')
+local opts = { noremap = true, silent = true }
+
+map('n', '<space>t', builtin.builtin, {})
+map('n', '<space>z', builtin.current_buffer_fuzzy_find, {})
+map('n', '<space>f', builtin.find_files, {})
+map('n', '<space>g', builtin.live_grep, {})
+map('n', '<space>b', builtin.buffers, {})
+map('n', '<space>h', builtin.help_tags, {})
+map('n', '<space>c', builtin.commands, {})
+map('n', '<space>S', builtin.symbols, {})
+
+map('n', '<space>d', builtin.lsp_definitions, opts)
+map('n', '<space>r', builtin.lsp_references, opts)
+map('n', '<space>sd', builtin.lsp_dynamic_workspace_symbols, opts)
+map('n', '<space>sw', builtin.lsp_dynamic_workspace_symbols, opts)
+map('n', '<space>,', builtin.diagnostics, opts)
+
