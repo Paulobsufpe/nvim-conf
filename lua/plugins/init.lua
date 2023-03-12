@@ -88,6 +88,7 @@ return require('packer').startup(function(use)
 		event = 'BufRead'
 	}
 	use { 'sheerun/vim-polyglot', event = 'BufRead' }
+	use { 'CraneStation/cranelift.vim' }
 	use { 'JuliaEditorSupport/julia-vim', event = 'BufReadPre' }
 	use {
 		'glts/vim-radical',

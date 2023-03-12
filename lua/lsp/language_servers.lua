@@ -42,12 +42,12 @@ local on_attach = function(client, bufnr)
 	map('n', '<space>R', vim.lsp.buf.rename, bufopts)
 	map('n', '<space>A', vim.lsp.buf.code_action, bufopts)
 	map('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
-end
 	map('n', '<space>.', ":lua vim.lsp.buf.", bufopts)
+end
 
 -- End Mappings
 
-lspconf.sumneko_lua.setup({
+lspconf.lua_ls.setup({
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities,
@@ -55,22 +55,18 @@ lspconf.sumneko_lua.setup({
 		Lua = {
 			runtime = {
 				version = 'LuaJIT',
-				path = vim.split(package.path, ';')
 			},
-			diagnostics = { globals = { 'vim' } },
+			diagnostics = {
+				globals = { 'vim' },
+			},
 			workspace = {
-				library = vim.tbl_extend(
-					"force", vim.api.nvim_get_runtime_file('', true),
-					{
-						["/usr/local/lib/lua/5.4"] = true,
-						["/usr/local/share/lua/5.4"] = true,
-					}
-				),
-				checkThirdParty = true
+				library = vim.api.nvim_get_runtime_file("", true),
 			},
-			telemetry = { enable = false }
-		}
-	}
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
 })
 
 lspconf.pylsp.setup({
@@ -91,18 +87,19 @@ lspconf.omnisharp.setup({
 	capabilities = capabilities
 })
 ]]
-
 lspconf.fsautocomplete.setup({
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities
 })
 
+--[[
 lspconf.jdtls.setup({
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities
 })
+]]
 
 lspconf.sourcekit.setup({
 	on_attach = on_attach,
@@ -136,12 +133,6 @@ lspconf.rust_analyzer.setup({
 })
 
 lspconf.denols.setup({
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities
-})
-
-lspconf.metals.setup({
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities
