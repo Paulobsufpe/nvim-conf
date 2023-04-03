@@ -1,178 +1,211 @@
-return require('packer').startup(function(use)
-	-- Packer can manage itself
-	use { 'wbthomason/packer.nvim' }
+-- return require('packer').startup(function(use)
+-- Packer can manage itself
+-- use { 'wbthomason/packer.nvim' }
 
-	use { 'rktjmp/lush.nvim' }
-	use {
-		'rose-pine/neovim', as = 'rose-pine', --, tag = 'v1.*',
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+
+	{ 'rktjmp/lush.nvim' },
+	{
+		'rose-pine/neovim',
+		name = 'rose-pine',                   --, tag = 'v1.*',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme rose-pine]]
 		-- end
-	}
-	use { 
+	},
+	{
 		'marko-cerovac/material.nvim',
+		lazy = false,
+		event = 'BufRead',
 		config = function()
 			-- darker, lighter, oceanic, palenight, deep ocean
 			-- vim.g.material_style = 'palenight'
 			vim.cmd [[colorscheme material]]
 		end
-	}
-	use { 
-		'Mofiqul/dracula.nvim', as = 'dracula',
+	},
+	{
+		'Mofiqul/dracula.nvim',
+		name = 'dracula',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme dracula]]
 		-- end
-	}
-	use {
+	},
+	{
 		"briones-gabriel/darcula-solid.nvim",
-		requires = "rktjmp/lush.nvim",
+		dependencies = "rktjmp/lush.nvim",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme darcula-solid]]
 		-- end
-	}
-	use {
-		'catppuccin/nvim', as = 'catppuccin',
+	},
+	{
+		'catppuccin/nvim',
+		name = 'catppuccin',
 		-- config = function()
-		-- 	require("catppuccin").setup {}
+		-- 	require("catppuccin").setup {},
 		-- -- latte, frappe, macchiato, mocha
-		-- 	vim.g.catppuccin_flavour = "macchiato" 
+		-- 	vim.g.catppuccin_flavour = "macchiato"
 		-- 	vim.cmd [[colorscheme catppuccin]]
 		-- end
-	}
-	use {'sonph/onehalf', rtp = 'vim'}
-	use {
+	},
+	{
+		'sonph/onehalf',
+		config = function(plugin)
+			vim.opt.rtp:append(plugin.dir .. 'vim')
+		end
+	},
+	{
 		'folke/tokyonight.nvim',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme tokyonight]]
 		-- end
-	}
-	use {
+	},
+	{
 		'rebelot/kanagawa.nvim'
 		-- config = function()
 		-- 	vim.cmd [[colorscheme kanagawa]]
 		-- end
-	}
-	use {
+	},
+	{
 		'EdenEast/nightfox.nvim'
 		-- config = function()
 		-- 	vim.cmd [[colorscheme nightfox]]
 		-- end
-	}
-	use {
+	},
+	{
 		'projekt0n/github-nvim-theme'
 		-- config = function()
 		-- 	require('github-theme').setup()
 		-- end
-	}
-	use {
+	},
+	{
 		'AlexvZyl/nordic.nvim',
 		-- config = function()
 		-- 	require('nordic').load()
 		-- end
-	}
+	},
 
-	use 'kyazdani42/nvim-web-devicons'
-	use {
+	'kyazdani42/nvim-web-devicons',
+	{
 		'hoob3rt/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-		event = "BufWinEnter",
+		dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true },
+		-- event = "BufWinEnter",
 		config = function() require("lualine-conf") end
-	}
+	},
 
-	use { 'junegunn/vim-easy-align' }
-	use { 'nvim-lua/plenary.nvim' }
-	use {
+	{ 'junegunn/vim-easy-align' },
+	{ 'nvim-lua/plenary.nvim' },
+	{
 		"folke/todo-comments.nvim",
-		requires = "nvim-lua/plenary.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
 		config = function() require("todo-comments").setup {} end,
-		event = 'BufRead'
-	}
-	use { 'sheerun/vim-polyglot', event = 'BufRead' }
-	use { 'CraneStation/cranelift.vim' }
-	use { 'JuliaEditorSupport/julia-vim', event = 'BufReadPre' }
-	use {
+		-- event = 'BufRead'
+	},
+	{
+		'sheerun/vim-polyglot',
+		-- event = 'BufRead'
+	},
+	{ 'CraneStation/cranelift.vim' },
+	{
+		'JuliaEditorSupport/julia-vim',
+		-- event = 'BufReadPre'
+	},
+	{
 		'glts/vim-radical',
-		requires = { 'glts/vim-magnum' },
-		event = 'VimEnter'
-	}
-	use {
+		dependencies = { 'glts/vim-magnum' },
+		-- event = 'VimEnter'
+	},
+	{
 		'nvim-treesitter/nvim-treesitter',
-		run = ":TSUpdate",
-		event = "BufEnter",
+		build = ":TSUpdate",
+		-- event = "BufEnter",
 		config = function() require("tree-sitter-conf") end
-	}
-	use {
-		'akinsho/bufferline.nvim', tag = "v2.*",
-		requires = 'kyazdani42/nvim-web-devicons',
-		event = "BufWinEnter",
+	},
+	{
+		'akinsho/bufferline.nvim',
+		version = "v2.*",
+		dependencies = 'kyazdani42/nvim-web-devicons',
+		-- event = "BufWinEnter",
 		config = function() require("bufferline-conf") end
-	}
-	use {
+	},
+	{
 		'kyazdani42/nvim-tree.lua',
-		requires = 'kyazdani42/nvim-web-devicons',
+		dependencies = 'kyazdani42/nvim-web-devicons',
 		cmd = "NvimTreeToggle",
 		config = function() require("nvim-tree").setup {} end
-	}
+	},
 
-	-- use {'folke/which-key.nvim', event = "BufWinEnter", config = "require('whichkey-config')"}
-	use {
+	-- {'folke/which-key.nvim', event = "BufWinEnter", config = "require('whichkey-config')"},
+	{
 		'nvim-telescope/telescope.nvim',
-		requires = { 'nvim-lua/plenary.nvim' },
+		lazy = false,
+		dependencies = { 'nvim-lua/plenary.nvim' },
 		cmd = "Telescope",
 		config = function() require("telescope-conf") end,
-		event = 'BufWinEnter'
-	}
-	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-	use { 'nvim-telescope/telescope-symbols.nvim' }
+		-- event = 'BufWinEnter'
+	},
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+	{ 'nvim-telescope/telescope-symbols.nvim' },
 
-	use {
+	{
 		'neovim/nvim-lspconfig',
 		config = function() require('lsp') end,
-		event = 'BufReadPost'
-	}
-	use { 'hrsh7th/cmp-nvim-lsp' }
-	use { 'hrsh7th/cmp-buffer' }
-	use { 'hrsh7th/nvim-cmp' }
-	use { 'hrsh7th/cmp-path' }
-	use { 'hrsh7th/cmp-omni' }
-	use { 'hrsh7th/cmp-nvim-lua' }
-	use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
-	use { 'L3MON4D3/LuaSnip' }
-	use { 'saadparwaiz1/cmp_luasnip' }
-	use { 'rafamadriz/friendly-snippets' }
-	use {
+		-- event = 'BufReadPost'
+	},
+	{ 'hrsh7th/cmp-nvim-lsp' },
+	{ 'hrsh7th/cmp-buffer' },
+	{ 'hrsh7th/nvim-cmp' },
+	{ 'hrsh7th/cmp-path' },
+	{ 'hrsh7th/cmp-omni' },
+	{ 'hrsh7th/cmp-nvim-lua' },
+	{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
+	{ 'L3MON4D3/LuaSnip' },
+	{ 'saadparwaiz1/cmp_luasnip' },
+	{ 'rafamadriz/friendly-snippets' },
+	{
 		'j-hui/fidget.nvim',
-		requires = 'neovim/nvim-lspconfig',
+		dependencies = 'neovim/nvim-lspconfig',
 		config = function() require("fidget").setup {} end,
-		after = 'nvim-lspconfig'
-	}
-	use { 'onsails/lspkind-nvim' }
-	use {
+		-- after = 'nvim-lspconfig'
+	},
+	{ 'onsails/lspkind-nvim' },
+	{
 		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
+		dependencies = "kyazdani42/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
-	}
-	use { 'folke/neodev.nvim' }
-	use { 'folke/neoconf.nvim' }
-	use { 'williamboman/nvim-lsp-installer' }
-	use {
+	},
+	{ 'folke/neodev.nvim' },
+	{ 'folke/neoconf.nvim' },
+	{ 'williamboman/nvim-lsp-installer' },
+	{
 		'norcalli/nvim-colorizer.lua',
 		config = function() require("colorizer-conf") end,
-		event = "BufRead"
-	}
-	use {
+		-- event = "BufRead"
+	},
+	{
 		'terrortylor/nvim-comment',
 		config = function() require("nvim_comment-conf") end,
-		event = "BufReadPost"
-	}
-	use {
+		-- event = "BufReadPost"
+	},
+	{
 		'sindrets/diffview.nvim',
-		requires = 'nvim-lua/plenary.nvim',
-		event = 'VimEnter'
-	}
-	use {
+		dependencies = 'nvim-lua/plenary.nvim',
+		-- event = 'VimEnter'
+	},
+	{
 		'lukas-reineke/indent-blankline.nvim',
-		config = function ()
+		config = function()
 			require("indent_blankline").setup {
 				use_treesitter = true,
 				-- show_current_context = true,
@@ -180,27 +213,30 @@ return require('packer').startup(function(use)
 				show_end_of_line = true
 			}
 		end,
-		after = 'nvim-treesitter'
-	}
-	use {
+		-- after = 'nvim-treesitter'
+	},
+	{
 		'windwp/nvim-autopairs',
 		config = function() require("nvim-autopairs").setup {} end
-	}
+	},
 
-	use {
+	{
 		'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
 		config = function()
 			require("toggle_lsp_diagnostics").init { start_on = false }
 		end,
-		after = 'nvim-lspconfig'
-	}
+		-- after = 'nvim-lspconfig'
+	},
 
-	use { 'gluon-lang/vim-gluon' }
-	use {
+	{ 'gluon-lang/vim-gluon' },
+	{
 		'fsharp/vim-fsharp',
 		ft = 'fsharp',
-		run = 'make fsautocomplete'
-	}
-	use { 'shirk/vim-gas' }
+		build = 'make fsautocomplete'
+	},
+	{ 'shirk/vim-gas' },
 
-end)
+}
+-- opts
+)
+-- end)

@@ -1,6 +1,7 @@
 -- vim.cmd("filetype plugin indent on")
 vim.o.termguicolors = true
 -- vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.o.shortmess = vim.o.shortmess .. 'I'
 vim.o.path = vim.o.path .. '**'
 vim.o.hidden = true
 vim.o.whichwrap = '<,>,[,],h,l'
@@ -29,6 +30,7 @@ vim.wo.number = true
 vim.wo.rnu = true
 -- vim.o.cursorline = true
 vim.wo.signcolumn = "yes"
+vim.wo.colorcolumn = "+1"
 vim.o.tabstop = 2
 vim.o.shiftwidth = 0
 vim.o.expandtab = false
