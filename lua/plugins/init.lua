@@ -28,7 +28,6 @@ require("lazy").setup({
 	{
 		'marko-cerovac/material.nvim',
 		lazy = false,
-		event = 'BufRead',
 		config = function()
 			-- darker, lighter, oceanic, palenight, deep ocean
 			-- vim.g.material_style = 'palenight'
@@ -114,7 +113,8 @@ require("lazy").setup({
 	},
 	{
 		'sheerun/vim-polyglot',
-		-- event = 'BufRead'
+		-- lazy = false
+		-- event = 'BufReadPre'
 	},
 	{ 'CraneStation/cranelift.vim' },
 	{
@@ -171,7 +171,13 @@ require("lazy").setup({
 	{ 'hrsh7th/cmp-nvim-lua' },
 	{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
 	{ 'L3MON4D3/LuaSnip' },
-	{ 'saadparwaiz1/cmp_luasnip' },
+	{ 
+		'saadparwaiz1/cmp_luasnip',
+		dependencies = {
+			'L3MON4D3/LuaSnip',
+			'rafamadriz/friendly-snippets'
+		}
+	},
 	{ 'rafamadriz/friendly-snippets' },
 	{
 		'j-hui/fidget.nvim',
@@ -205,6 +211,10 @@ require("lazy").setup({
 	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
+		dependencies = {
+			'nvim-treesitter',
+			'marko-cerovac/material.nvim'
+		},
 		config = function()
 			require("indent_blankline").setup {
 				use_treesitter = true,
