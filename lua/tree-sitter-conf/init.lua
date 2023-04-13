@@ -11,6 +11,13 @@ require 'nvim-treesitter.configs'.setup {
 		enable = true,
 		-- list of language that will be disabled
 		-- disable = {},
+		disable = function(lang, buf)
+			local max_filesize = 150 * 1024 -- 150 KB
+			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if ok and stats and stats.size > max_filesize then
+				return true
+			end
+		end,
 		additional_vim_regex_highlighting = false,
 	},
 

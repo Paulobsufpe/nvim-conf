@@ -19,8 +19,20 @@ require("lazy").setup({
 
 	{ 'rktjmp/lush.nvim' },
 	{
+		"phha/zenburn.nvim",
+		-- config = function()
+		-- 	require("zenburn").setup()
+		-- end
+	},
+	{
+		'navarasu/onedark.nvim',
+		-- config = function()
+		-- 	require('onedark').load()
+		-- end
+	},
+	{
 		'rose-pine/neovim',
-		name = 'rose-pine',                   --, tag = 'v1.*',
+		name = 'rose-pine', --, tag = 'v1.*',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme rose-pine]]
 		-- end
@@ -61,7 +73,7 @@ require("lazy").setup({
 	{
 		'sonph/onehalf',
 		config = function(plugin)
-			vim.opt.rtp:append(plugin.dir .. 'vim')
+			vim.opt.rtp:append(plugin.dir .. '/vim')
 		end
 	},
 	{
@@ -171,7 +183,7 @@ require("lazy").setup({
 	{ 'hrsh7th/cmp-nvim-lua' },
 	{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
 	{ 'L3MON4D3/LuaSnip' },
-	{ 
+	{
 		'saadparwaiz1/cmp_luasnip',
 		dependencies = {
 			'L3MON4D3/LuaSnip',
