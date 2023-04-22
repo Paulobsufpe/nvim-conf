@@ -144,13 +144,13 @@ require("lazy").setup({
 		-- event = "BufEnter",
 		config = function() require("tree-sitter-conf") end
 	},
-	{
-		'akinsho/bufferline.nvim',
-		version = "v2.*",
-		dependencies = 'kyazdani42/nvim-web-devicons',
-		-- event = "BufWinEnter",
-		config = function() require("bufferline-conf") end
-	},
+	-- {
+	-- 	'akinsho/bufferline.nvim',
+	-- 	version = "v2.*",
+	-- 	dependencies = 'kyazdani42/nvim-web-devicons',
+	-- 	-- event = "BufWinEnter",
+	-- 	config = function() require("bufferline-conf") end
+	-- },
 	{
 		'kyazdani42/nvim-tree.lua',
 		dependencies = 'kyazdani42/nvim-web-devicons',
@@ -179,7 +179,7 @@ require("lazy").setup({
 	{ 'hrsh7th/cmp-buffer' },
 	{ 'hrsh7th/nvim-cmp' },
 	{ 'hrsh7th/cmp-path' },
-	{ 'hrsh7th/cmp-omni' },
+	-- { 'hrsh7th/cmp-omni' },
 	{ 'hrsh7th/cmp-nvim-lua' },
 	{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
 	{ 'L3MON4D3/LuaSnip' },
