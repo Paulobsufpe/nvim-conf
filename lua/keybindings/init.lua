@@ -7,7 +7,6 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 ]]
-
 local map = vim.keymap.set
 
 -- Maps
@@ -23,7 +22,7 @@ map('n', '<leader>d', ':ToggleDiag<CR>')
 
 map(
 	'n', '<leader>h',
-	function ()
+	function()
 		if vim.b.current_syntax then
 			vim.cmd('syntax off | TSBufEnable highlight')
 		else
@@ -35,13 +34,19 @@ map(
 
 map(
 	'n', '<leader>l',
-	function ()
-		if LSP_ON then
+	function()
+		local bufnr = vim.api.nvim_get_current_buf()
+		local on = false
+		-- não sei fazer isso de um jeito melhor com a api disponível
+		vim.lsp.for_each_buffer_client(bufnr, function(client)
+			print(vim.inspect(client))
+			on = true
+		end)
+
+		if on then
 			vim.cmd('LspStop')
-			LSP_ON = false
 		else
 			vim.cmd('LspStart')
-			LSP_ON = true
 		end
 	end,
 	{}
@@ -49,7 +54,7 @@ map(
 
 map(
 	'n', '<leader>H',
-	function ()
+	function()
 		if vim.o.list then
 			vim.o.list = false
 		else
@@ -60,11 +65,20 @@ map(
 
 map('n', '<leader>R', ':e!<CR>')
 
+-- NOTE: talvez deva mudar isso depois para liberar o comando '>' puro.
 map('v', '>', '>gv')
 map('v', '<', '<gv')
--- NOTE: talvez deva mudar isso depois para liberar o comando '>' puro.
 
+-- Quickfix list, Loc list, etc
+map('n', '<leader>E', ":cw<cr>")
+map('n', '[e', ":cN<cr>")
+map('n', ']e', ":cn<cr>")
 
+map('n', '<leader>L', ":lw<cr>")
+map('n', '[l', ":lNext<cr>")
+map('n', ']l', ":lnext<cr>")
+
+map('n', '<space>m', ":mak ", { silent = false })
 -- Trouble
 
 map('n', ',,', ":Trouble workspace_diagnostics<CR>")
@@ -92,7 +106,6 @@ nnoremap <silent>sbe :BufferLineSortByExtension<CR>
 nnoremap <silent>sbd :BufferLineSortByDirectory<CR>
 " nnoremap <silent><mymap> :lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>
 --]]
-
 -- Nvim-Tree
 
 map('n', '<space>n', ':NvimTreeToggle<CR>', { silent = true })

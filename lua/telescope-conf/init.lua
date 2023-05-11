@@ -16,7 +16,7 @@ table.insert(vimgrep_arguments, '!**/.git/*')
 require('telescope').setup {
 	defaults = {
 		layout_strategy = 'vertical',
-		prompt_prefix = '🔍',
+		prompt_prefix = ' ',
 		path_display = {},
 		color_devicons = true,
 		-- set_env = { ['COLORTERM'] = 'truecolor' },
@@ -44,6 +44,13 @@ require('telescope').setup {
 		live_grep = {
 			layout_config = {
 				preview_cutoff = 10
+			},
+			preview = true
+		},
+		git_files = {
+			theme = 'ivy',
+			layout_config = {
+				preview_cutoff = 50
 			},
 			preview = true
 		},

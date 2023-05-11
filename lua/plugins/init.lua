@@ -148,7 +148,7 @@ require("lazy").setup({
 		'akinsho/bufferline.nvim',
 		version = "v2.*",
 		dependencies = 'kyazdani42/nvim-web-devicons',
-		-- event = "BufWinEnter",
+		event = "BufWinEnter",
 		config = function() require("bufferline-conf") end
 	},
 	{
@@ -215,6 +215,10 @@ require("lazy").setup({
 		'terrortylor/nvim-comment',
 		config = function() require("nvim_comment-conf") end,
 		-- event = "BufReadPost"
+	},
+	{
+		'yorickpeterse/nvim-pqf',
+		config = function() require('pqf').setup {} end
 	},
 	{
 		'sindrets/diffview.nvim',

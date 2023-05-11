@@ -17,15 +17,6 @@ map('n', '[d', vim.diagnostic.goto_prev, opts)
 map('n', ']d', vim.diagnostic.goto_next, opts)
 map('n', '<space>q', vim.diagnostic.setloclist, opts)
 
--- Quickfix list, Loc list, etc
-map('n', '<leader>E', ":cw<cr>")
-map('n', '[e', ":cN<cr>")
-map('n', ']e', ":cn<cr>")
-
-map('n', '<leader>L', ":lw<cr>")
-map('n', '[l', ":lNext<cr>")
-map('n', ']l', ":lnext<cr>")
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
