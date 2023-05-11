@@ -3,7 +3,7 @@ require 'nvim-treesitter.configs'.setup {
 		"c", "rust", "cpp", "java",
 		"lua", "julia", "html", "json",
 		"c_sharp", "scala", "python", "dot",
-		"markdown", "javascript", "typescript",
+		"javascript", "typescript",
 		"css", "yaml", "zig"
 	},
 

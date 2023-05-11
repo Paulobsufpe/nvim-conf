@@ -17,6 +17,15 @@ map('n', '[d', vim.diagnostic.goto_prev, opts)
 map('n', ']d', vim.diagnostic.goto_next, opts)
 map('n', '<space>q', vim.diagnostic.setloclist, opts)
 
+-- Quickfix list, Loc list, etc
+map('n', '<leader>E', ":cw<cr>")
+map('n', '[e', ":cN<cr>")
+map('n', ']e', ":cn<cr>")
+
+map('n', '<leader>L', ":lw<cr>")
+map('n', '[l', ":lNext<cr>")
+map('n', ']l', ":lnext<cr>")
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -42,7 +51,7 @@ local on_attach = function(client, bufnr)
 	map('n', '<space>R', vim.lsp.buf.rename, bufopts)
 	map('n', '<space>A', vim.lsp.buf.code_action, bufopts)
 	map('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
-	map('n', '<space>.', ":lua vim.lsp.buf.", bufopts)
+	map('n', '<space>.', ":lua vim.lsp.buf.", { silent = false, buffer = bufnr })
 end
 
 -- End Mappings
@@ -100,7 +109,6 @@ lspconf.jdtls.setup({
 	capabilities = capabilities
 })
 ]]
-
 lspconf.sourcekit.setup({
 	on_attach = on_attach,
 	autostart = false,
@@ -139,6 +147,12 @@ lspconf.denols.setup({
 })
 
 lspconf.texlab.setup({
+	on_attach = on_attach,
+	autostart = false,
+	capabilities = capabilities
+})
+
+lspconf.zls.setup({
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities

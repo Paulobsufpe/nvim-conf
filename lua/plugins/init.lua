@@ -144,13 +144,13 @@ require("lazy").setup({
 		-- event = "BufEnter",
 		config = function() require("tree-sitter-conf") end
 	},
-	-- {
-	-- 	'akinsho/bufferline.nvim',
-	-- 	version = "v2.*",
-	-- 	dependencies = 'kyazdani42/nvim-web-devicons',
-	-- 	-- event = "BufWinEnter",
-	-- 	config = function() require("bufferline-conf") end
-	-- },
+	{
+		'akinsho/bufferline.nvim',
+		version = "v2.*",
+		dependencies = 'kyazdani42/nvim-web-devicons',
+		-- event = "BufWinEnter",
+		config = function() require("bufferline-conf") end
+	},
 	{
 		'kyazdani42/nvim-tree.lua',
 		dependencies = 'kyazdani42/nvim-web-devicons',
