@@ -56,3 +56,9 @@ vim.cmd[[set omnifunc=syntaxcomplete#Complete]]
 vim.cmd[[let g:opamshare = substitute(system('opam var share'),'\n$','','''')]]
 vim.cmd[[execute "set rtp+=" . g:opamshare . "/merlin/vim"]]
 vim.cmd[[set rtp^="/Users/paulobs/.opam/default/share/ocp-indent/vim"]]
+
+-- vim.cmd[[if executable('rg') | set grepformat+=%f:%l:%c:%m grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --hidden\ --no-ignore | endif]]
+if vim.fn.executable('rg') == 1 then
+	vim.o.grepformat = '%f:%l:%c:%m'
+	vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
+end
