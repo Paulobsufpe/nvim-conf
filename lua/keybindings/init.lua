@@ -91,14 +91,16 @@ map('n', ';;', ":TodoLocList<CR>")
 
 -- BufferLine
 
-map('n', ']b', ':BufferLineCycleNext<CR>', { silent = true })
-map('n', '[b', ':BufferLineCyclePrev<CR>', { silent = true })
+-- map('n', ']b', ':BufferLineCycleNext<CR>', { silent = true })
+-- map('n', '[b', ':BufferLineCyclePrev<CR>', { silent = true })
+map('n', ']b', ':bnext<CR>', { silent = true })
+map('n', '[b', ':bNext<CR>', { silent = true })
 
-map('n', 'm>', ':BufferLineMoveNext<CR>', { silent = true })
-map('n', 'm<', ':BufferLineMovePrev<CR>', { silent = true })
-
-map('n', 'sbe', ':BufferLineSortByExtension<CR>', { silent = true })
-map('n', 'sbd', ':BufferLineSortByDirectory<CR>', { silent = true })
+-- map('n', 'm>', ':BufferLineMoveNext<CR>', { silent = true })
+-- map('n', 'm<', ':BufferLineMovePrev<CR>', { silent = true })
+--
+-- map('n', 'sbe', ':BufferLineSortByExtension<CR>', { silent = true })
+-- map('n', 'sbd', ':BufferLineSortByDirectory<CR>', { silent = true })
 
 --[[
 " These commands will sort buffers by directory, language, or a custom criteria

@@ -1,12 +1,12 @@
 require('neodev').setup {}
 require('neoconf').setup {}
-local lsp_installer = require('nvim-lsp-installer')
+-- local lsp_installer = require('nvim-lsp-installer')
 local lspconf = require('lspconfig')
 
 local capabilities = require('cmp_nvim_lsp')
 		.default_capabilities()
 
-lsp_installer.setup {}
+-- lsp_installer.setup {}
 
 -- Mappings
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -37,7 +37,7 @@ local on_attach = function(client, bufnr)
 	map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
 	map('n', '<space>wl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
+	end, { silent = false, buffer = bufnr })
 	map('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
 	map('n', '<space>R', vim.lsp.buf.rename, bufopts)
 	map('n', '<space>A', vim.lsp.buf.code_action, bufopts)
@@ -61,6 +61,7 @@ lspconf.lua_ls.setup({
 			},
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
 			},
 			telemetry = {
 				enable = false,

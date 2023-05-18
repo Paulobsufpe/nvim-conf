@@ -24,11 +24,38 @@ require("lazy").setup({
 		-- 	require("zenburn").setup()
 		-- end
 	},
+	-- {
+	-- 	'navarasu/onedark.nvim',
+	-- 	name = 'navarasu_onedark',
+	-- 	-- config = function()
+	-- 	-- 	require('onedark').load()
+	-- 	-- end
+	-- },
 	{
-		'navarasu/onedark.nvim',
+		'olimorris/onedarkpro.nvim',
 		-- config = function()
-		-- 	require('onedark').load()
+		-- 	vim.cmd [[colorscheme onedark]]
 		-- end
+	},
+	{
+		"neanias/everforest-nvim",
+		-- version = false,
+		-- lazy = false,
+		-- priority = 1000, -- make sure to load this before all the other start plugins
+		-- -- Optional; default configuration will be used if setup isn't called.
+		-- config = function()
+		-- 	require("everforest").setup({
+		-- 		-- Your config here
+		-- 	})
+		-- end,
+	},
+	{
+		'sam4llis/nvim-tundra',
+		config = function()
+			require('nvim-tundra').setup {}
+			-- vim.opt.background = 'dark'
+			-- vim.cmd [[colorscheme tundra]]
+		end
 	},
 	{
 		'rose-pine/neovim',
@@ -144,13 +171,14 @@ require("lazy").setup({
 		-- event = "BufEnter",
 		config = function() require("tree-sitter-conf") end
 	},
-	{
-		'akinsho/bufferline.nvim',
-		version = "v2.*",
-		dependencies = 'kyazdani42/nvim-web-devicons',
-		event = "BufWinEnter",
-		config = function() require("bufferline-conf") end
-	},
+	-- FIX: por algum motivo bufferline n está func. no neovim nightly
+	-- {
+	-- 	'akinsho/bufferline.nvim',
+	-- 	version = "v2.*",
+	-- 	dependencies = 'kyazdani42/nvim-web-devicons',
+	-- 	event = "BufWinEnter",
+	-- 	config = function() require("bufferline-conf") end
+	-- },
 	{
 		'kyazdani42/nvim-tree.lua',
 		dependencies = 'kyazdani42/nvim-web-devicons',
@@ -205,7 +233,11 @@ require("lazy").setup({
 	},
 	{ 'folke/neodev.nvim' },
 	{ 'folke/neoconf.nvim' },
-	{ 'williamboman/nvim-lsp-installer' },
+	-- when needed, add mason.nvim for:
+	-- LSP: lspconfig & mason-lspconfig.nvim
+	-- DAP: nvim-dap
+	-- Linters: null-ls.nvim or nvim-lint
+	-- Formatters: null-ls.nvim or formatter.nvim
 	{
 		'norcalli/nvim-colorizer.lua',
 		config = function() require("colorizer-conf") end,
