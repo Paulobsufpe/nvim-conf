@@ -47,17 +47,15 @@ vim.g.netrw_banner = false
 vim.g.markdown_fenced_languages = {
 	"ts=typescript"
 }
-vim.g.python3_host_prog = "python3.11"
 
 -- NOTE: setup omnifunc without lua (i dont know other way)
 -- vim.api.nvim_set_option('omnifunc', 'v:syntaxcomplete#Complete') -- não funciona
 vim.cmd[[set omnifunc=syntaxcomplete#Complete]]
 
-vim.cmd[[let g:opamshare = substitute(system('opam var share'),'\n$','','''')]]
-vim.cmd[[execute "set rtp+=" . g:opamshare . "/merlin/vim"]]
-vim.cmd[[set rtp^="/Users/paulobs/.opam/default/share/ocp-indent/vim"]]
+vim.cmd[[autocmd BufRead,BufNewFile *.ml 
+	\ set rtp+=$HOME/.opam/default/share/merlin/vim |
+	\ set rtp^=$HOME/.opam/default/share/ocp-indent/vim]]
 
--- vim.cmd[[if executable('rg') | set grepformat+=%f:%l:%c:%m grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --hidden\ --no-ignore | endif]]
 if vim.fn.executable('rg') == 1 then
 	vim.o.grepformat = '%f:%l:%c:%m'
 	vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'

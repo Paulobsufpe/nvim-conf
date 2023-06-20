@@ -149,3 +149,9 @@ lspconf.zls.setup({
 	autostart = false,
 	capabilities = capabilities
 })
+
+lspconf.ocamllsp.setup({
+	on_attach = on_attach,
+	autostart = false,
+	capabilities = capabilities
+})

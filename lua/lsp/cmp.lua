@@ -76,7 +76,7 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lua' },
 		-- { name = 'omni' },
-		-- {name = 'vsnip'},
+		-- { name = 'vsnip' },
 		-- For luasnip user.
 		{ name = 'luasnip' },
 		-- For ultisnips user.

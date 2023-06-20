@@ -207,7 +207,6 @@ require("lazy").setup({
 	{ 'hrsh7th/cmp-buffer' },
 	{ 'hrsh7th/nvim-cmp' },
 	{ 'hrsh7th/cmp-path' },
-	-- { 'hrsh7th/cmp-omni' },
 	{ 'hrsh7th/cmp-nvim-lua' },
 	{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
 	{ 'L3MON4D3/LuaSnip' },
@@ -222,6 +221,7 @@ require("lazy").setup({
 	{
 		'j-hui/fidget.nvim',
 		dependencies = 'neovim/nvim-lspconfig',
+    tag = "legacy",
 		config = function() require("fidget").setup {} end,
 		-- after = 'nvim-lspconfig'
 	},
