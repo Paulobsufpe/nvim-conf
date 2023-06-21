@@ -52,7 +52,7 @@ vim.g.markdown_fenced_languages = {
 -- vim.api.nvim_set_option('omnifunc', 'v:syntaxcomplete#Complete') -- não funciona
 vim.cmd[[set omnifunc=syntaxcomplete#Complete]]
 
-vim.cmd[[autocmd BufRead,BufNewFile *.ml 
+vim.cmd[[autocmd BufRead,BufNewFile *.ml
 	\ set rtp+=$HOME/.opam/default/share/merlin/vim |
 	\ set rtp^=$HOME/.opam/default/share/ocp-indent/vim]]
 
