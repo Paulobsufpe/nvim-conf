@@ -73,7 +73,15 @@ lspconf.lua_ls.setup({
 lspconf.pylsp.setup({
 	on_attach = on_attach,
 	autostart = false,
-	capabilities = capabilities
+	capabilities = capabilities,
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = { enabled = false },
+				pydocstyle = { enabled = false },
+			}
+		}
+	}
 })
 
 --[[
