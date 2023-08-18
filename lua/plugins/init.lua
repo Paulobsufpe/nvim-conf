@@ -221,13 +221,13 @@ require("lazy").setup({
 	{
 		'j-hui/fidget.nvim',
 		dependencies = 'neovim/nvim-lspconfig',
-    tag = "legacy",
+		tag = 'legacy',
 		config = function() require("fidget").setup {} end,
 		-- after = 'nvim-lspconfig'
 	},
 	{ 'onsails/lspkind-nvim' },
 	{
-		"folke/trouble.nvim",
+		'folke/trouble.nvim',
 		dependencies = "kyazdani42/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
 	},
