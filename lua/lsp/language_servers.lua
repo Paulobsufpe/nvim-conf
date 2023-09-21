@@ -163,3 +163,10 @@ lspconf.ocamllsp.setup({
 	autostart = false,
 	capabilities = capabilities
 })
+
+lspconf.hls.setup({
+	on_attach = on_attach,
+	autostart = false,
+	capabilities = capabilities,
+  filetypes = { 'haskell', 'lhaskell', 'cabal' }
+})
