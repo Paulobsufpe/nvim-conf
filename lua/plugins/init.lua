@@ -262,17 +262,10 @@ require("lazy").setup({
 		'lukas-reineke/indent-blankline.nvim',
 		dependencies = {
 			'nvim-treesitter',
-			'marko-cerovac/material.nvim'
+			-- 'marko-cerovac/material.nvim'
 		},
-		config = function()
-			require("indent_blankline").setup {
-				use_treesitter = true,
-				-- show_current_context = true,
-				-- show_current_context_start = true,
-				show_end_of_line = true
-			}
-		end,
-		-- after = 'nvim-treesitter'
+		main = "ibl",
+		opts = {},
 	},
 	{
 		'windwp/nvim-autopairs',
