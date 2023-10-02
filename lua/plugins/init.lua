@@ -258,6 +258,15 @@ require("lazy").setup({
 		-- event = 'VimEnter'
 	},
 	{
+		'lukas-reineke/indent-blankline.nvim',
+		dependencies = {
+			'nvim-treesitter',
+			-- 'marko-cerovac/material.nvim'
+		},
+		main = "ibl",
+		opts = {},
+	},
+	{
 		'windwp/nvim-autopairs',
 		config = function() require("nvim-autopairs").setup {} end
 	},
