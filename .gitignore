@@ -2,12 +2,7 @@ plugin/packer_compiled.lua
 lua/.luarc.json
 readme.html
 lazy-lock.json
-
-compiler/fasm.vim
-
-indent/fasm.vim
-
-syntax/fasm.vim
-syntax/gas.vim
-syntax/porth.vim
+compiler
+indent
+syntax
 
