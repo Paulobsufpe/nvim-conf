@@ -11,13 +11,6 @@ local map = vim.keymap.set
 
 -- Maps
 
-
-map(
-	'n', '<leader><space>',
-	':noh <CR>',
-	{ silent = true }
-)
-
 map('n', '<leader>d', ':ToggleDiag<CR>')
 
 map(
@@ -68,6 +61,10 @@ map('n', '<leader>R', ':e!<CR>')
 -- NOTE: talvez deva mudar isso depois para liberar o comando '>' puro.
 map('v', '>', '>gv')
 map('v', '<', '<gv')
+
+-- Tabs
+map('n', ']t', ':tabnext<CR>', { silent = true })
+map('n', '[t', ':tabNext<CR>', { silent = true })
 
 -- Quickfix list, Loc list, etc
 map('n', '<leader>E', ":cw<cr>")
