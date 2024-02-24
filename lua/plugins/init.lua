@@ -248,9 +248,19 @@ require("lazy").setup({
 		config = function() require("nvim_comment-conf") end,
 		-- event = "BufReadPost"
 	},
+	-- {
+	-- 	'yorickpeterse/nvim-pqf',
+	-- 	config = function() require('pqf').setup {} end
+	-- },
 	{
-		'yorickpeterse/nvim-pqf',
-		config = function() require('pqf').setup {} end
+		'kevinhwang91/nvim-bqf',
+		ft = 'qf',
+		config = function() require("bqf").setup {
+				preview = {
+					auto_preview = false
+				}
+			}
+		end
 	},
 	{
 		'sindrets/diffview.nvim',
