@@ -22,10 +22,18 @@ map('n', '<space>q', vim.diagnostic.setloclist, opts)
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	-- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+	map('n', '<space>I', function()
+		if client.server_capabilities.inlayHintProvider then
+			vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+		else
+			print("Inlay Hint não suportado pelo LSP")
+		end
+	end, { noremap = true, silent = false } )
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	map('n', 'gD', vim.lsp.buf.declaration, bufopts)
 	map('n', 'gd', vim.lsp.buf.definition, bufopts)
 	map('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -40,7 +48,7 @@ local on_attach = function(client, bufnr)
 	end, { silent = false, buffer = bufnr })
 	map('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
 	map('n', '<space>R', vim.lsp.buf.rename, bufopts)
-	map('n', '<space>A', vim.lsp.buf.code_action, bufopts)
+	map('n', '<space>a', vim.lsp.buf.code_action, bufopts)
 	map('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
 	map('n', '<space>.', ":lua vim.lsp.buf.", { silent = false, buffer = bufnr })
 end
@@ -65,6 +73,9 @@ lspconf.lua_ls.setup({
 			},
 			telemetry = {
 				enable = false,
+			},
+			hint = {
+				enable = true,
 			},
 		},
 	},
