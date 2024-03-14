@@ -29,19 +29,20 @@ if vim.g.neovide then
 	-- 		"-rlig",
 	-- 	}
 	-- }
-	vim.o.guifont = "JetbrainsMono Nerd Font:h13"
+	vim.o.guifont = "JetbrainsMonoNL Nerd Font:h13"
 	-- vim.o.guifont = "Iosevka Nerd Font:h13"
 
 	vim.g.neovide_scale_factor = 1.0
 	local change_scale_factor = function(delta)
-		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+		-- vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta
 	end
 	vim.keymap.set("n", "<C-=>", function()
-		change_scale_factor(1.25)
+		change_scale_factor(0.1)
 		print("scale: " .. vim.g.neovide_scale_factor)
 	end)
 	vim.keymap.set("n", "<C-->", function()
-		change_scale_factor(1/1.25)
+		change_scale_factor(-0.1)
 		print("scale: " .. vim.g.neovide_scale_factor)
 	end)
 	vim.g.neovide_cursor_animate_in_insert_mode = false
