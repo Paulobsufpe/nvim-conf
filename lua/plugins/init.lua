@@ -274,6 +274,16 @@ require("lazy").setup({
 			-- 'marko-cerovac/material.nvim'
 		},
 		main = "ibl",
+		config = function()
+			require("ibl").setup {
+				indent = {
+					char = "▏"
+				},
+				exclude = {
+					filetypes = { "porth" }
+				}
+			}
+		end,
 		opts = {},
 	},
 	{
