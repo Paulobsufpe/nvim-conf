@@ -62,20 +62,38 @@ map('n', '<leader>R', ':e!<CR>')
 map('v', '>', '>gv')
 map('v', '<', '<gv')
 
+map('i', '<c-Left>',  '<esc>I')
+map('i', '<c-Right>', '<esc>A')
+
+if vim.g.neovide then
+	map('n', '<m-Left>',  '<c-w><Left>')
+	map('n', '<m-Right>', '<c-w><Right>')
+	map('n', '<m-Up>',    '<c-w><Up>')
+	map('n', '<m-Down>',  '<c-w><Down>')
+else
+	map('n', '<c-Left>',  '<c-w><Left>')
+	map('n', '<c-Right>', '<c-w><Right>')
+	map('n', '<c-Up>',    '<c-w><Up>')
+	map('n', '<c-Down>',  '<c-w><Down>')
+end
+
 -- Tabs
+
 map('n', ']t', ':tabnext<CR>', { silent = true })
 map('n', '[t', ':tabNext<CR>', { silent = true })
 
 -- Quickfix list, Loc list, etc
+
 map('n', '<leader>E', ":cw<cr>")
-map('n', '[e', ":cN<cr>")
-map('n', ']e', ":cn<cr>")
+map('n', '[e',        ":cN<cr>")
+map('n', ']e',        ":cn<cr>")
 
 map('n', '<leader>L', ":lw<cr>")
-map('n', '[l', ":lNext<cr>")
-map('n', ']l', ":lnext<cr>")
+map('n', '[l',        ":lNext<cr>")
+map('n', ']l',        ":lnext<cr>")
 
 map('n', '<space>m', ":mak ", { silent = false })
+
 -- Trouble
 
 map('n', ',,', ":Trouble workspace_diagnostics<CR>")
@@ -105,8 +123,10 @@ nnoremap <silent>sbe :BufferLineSortByExtension<CR>
 nnoremap <silent>sbd :BufferLineSortByDirectory<CR>
 " nnoremap <silent><mymap> :lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>
 --]]
+
+
 -- Nvim-Tree
 
-map('n', '<space>n', ':NvimTreeToggle<CR>', { silent = true })
-map('n', '<leader>r', ':NvimTreeRefresh<CR>', { silent = true })
+map('n', '<space>n',  ':NvimTreeToggle<CR>',   { silent = true })
+map('n', '<leader>r', ':NvimTreeRefresh<CR>',  { silent = true })
 map('n', '<leader>n', ':NvimTreeFindFile<CR>', { silent = true })
