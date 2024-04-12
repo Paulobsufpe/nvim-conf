@@ -95,31 +95,6 @@ lspconf.pylsp.setup({
 	}
 })
 
---[[
-lspconf.omnisharp.setup({
-	on_attach = on_attach,
-	autostart = false,
-	cmd = {
-		'dotnet',
-		'/Users/paulobs/.local/share/nvim/lsp_servers\
-		/omnisharp/omnisharp/OmniSharp.dll'
-	},
-	capabilities = capabilities
-})
-]]
-lspconf.fsautocomplete.setup({
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities
-})
-
---[[
-lspconf.jdtls.setup({
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities
-})
-]]
 lspconf.sourcekit.setup({
 	on_attach = on_attach,
 	autostart = false,

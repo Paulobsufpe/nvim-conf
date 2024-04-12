@@ -300,11 +300,6 @@ require("lazy").setup({
 	},
 
 	{ 'gluon-lang/vim-gluon' },
-	{
-		'fsharp/vim-fsharp',
-		ft = 'fsharp',
-		build = 'make fsautocomplete'
-	},
 	{ 'shirk/vim-gas' },
 
 }
