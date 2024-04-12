@@ -172,13 +172,13 @@ require("lazy").setup({
 		config = function() require("tree-sitter-conf") end
 	},
 	-- FIX: por algum motivo bufferline n está func. no neovim nightly
-	-- {
-	-- 	'akinsho/bufferline.nvim',
-	-- 	version = "v2.*",
-	-- 	dependencies = 'kyazdani42/nvim-web-devicons',
-	-- 	event = "BufWinEnter",
-	-- 	config = function() require("bufferline-conf") end
-	-- },
+	{
+		'akinsho/bufferline.nvim',
+		version = "*",
+		dependencies = 'kyazdani42/nvim-web-devicons',
+		event = "BufWinEnter",
+		config = function() require("bufferline-conf") end
+	},
 	{
 		'kyazdani42/nvim-tree.lua',
 		dependencies = 'kyazdani42/nvim-web-devicons',
@@ -200,6 +200,7 @@ require("lazy").setup({
 
 	{
 		'neovim/nvim-lspconfig',
+		dependencies = { 'folke/neoconf.nvim' },
 		config = function() require('lsp') end,
 		-- event = 'BufReadPost'
 	},
