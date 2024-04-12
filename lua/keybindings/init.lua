@@ -133,8 +133,8 @@ map('n', '<C-j>', ':MoveLine(1)<CR>', opts)
 map('n', '<C-k>', ':MoveLine(-1)<CR>', opts)
 -- map('n', '<A-h>', ':MoveHChar(-1)<CR>', opts)
 -- map('n', '<A-l>', ':MoveHChar(1)<CR>', opts)
--- map('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
--- map('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
+map('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
+map('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
 
 -- Visual-mode commands
 map('v', '<C-j>', ':MoveBlock(1)<CR>', opts)
