@@ -1,4 +1,5 @@
 vim.g.mapleader = '\\'
+-- vim.g.maplocalleader = ','
 
 --[[
 local function map(mode, lhs, rhs, opts)
@@ -123,3 +124,20 @@ nnoremap <silent>sbd :BufferLineSortByDirectory<CR>
 map('n', '<space>n',  ':NvimTreeToggle<CR>',   { silent = true })
 map('n', '<leader>r', ':NvimTreeRefresh<CR>',  { silent = true })
 map('n', '<leader>n', ':NvimTreeFindFile<CR>', { silent = true })
+
+-- move.nvim
+
+local opts = { noremap = true, silent = true }
+-- Normal-mode commands
+map('n', '<C-j>', ':MoveLine(1)<CR>', opts)
+map('n', '<C-k>', ':MoveLine(-1)<CR>', opts)
+-- map('n', '<A-h>', ':MoveHChar(-1)<CR>', opts)
+-- map('n', '<A-l>', ':MoveHChar(1)<CR>', opts)
+-- map('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
+-- map('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
+
+-- Visual-mode commands
+map('v', '<C-j>', ':MoveBlock(1)<CR>', opts)
+map('v', '<C-k>', ':MoveBlock(-1)<CR>', opts)
+-- map('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
+-- map('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)

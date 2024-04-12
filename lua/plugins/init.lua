@@ -137,7 +137,7 @@ require("lazy").setup({
 	'kyazdani42/nvim-web-devicons',
 	{
 		'hoob3rt/lualine.nvim',
-		dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true },
+		dependencies = { 'kyazdani42/nvim-web-devicons' },
 		-- event = "BufWinEnter",
 		config = function() require("lualine-conf") end
 	},
@@ -171,7 +171,10 @@ require("lazy").setup({
 		-- event = "BufEnter",
 		config = function() require("tree-sitter-conf") end
 	},
-	-- FIX: por algum motivo bufferline n está func. no neovim nightly
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = { 'nvim-treesitter' },
+	},
 	{
 		'akinsho/bufferline.nvim',
 		version = "*",
@@ -234,6 +237,10 @@ require("lazy").setup({
 	},
 	{ 'folke/neodev.nvim' },
 	{ 'folke/neoconf.nvim' },
+	{
+		'folke/zen-mode.nvim',
+		opts = {}
+	},
 	-- when needed, add mason.nvim for:
 	-- LSP: lspconfig & mason-lspconfig.nvim
 	-- DAP: nvim-dap
@@ -262,6 +269,10 @@ require("lazy").setup({
 				}
 			}
 		end
+	},
+	{ 
+		'fedepujol/move.nvim',
+		opts = {}
 	},
 	{
 		'sindrets/diffview.nvim',
