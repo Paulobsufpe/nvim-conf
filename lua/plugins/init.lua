@@ -275,6 +275,13 @@ require("lazy").setup({
 		opts = {}
 	},
 	{
+		'ggandor/leap.nvim',
+		config = function()
+			local leap = require('leap')
+			leap.create_default_mappings()
+		end
+	}, -- jumping plugin
+	{
 		'sindrets/diffview.nvim',
 		dependencies = 'nvim-lua/plenary.nvim',
 		-- event = 'VimEnter'
