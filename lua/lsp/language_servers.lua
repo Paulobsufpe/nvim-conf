@@ -1,12 +1,10 @@
 require('neodev').setup {}
 require('neoconf').setup {}
--- local lsp_installer = require('nvim-lsp-installer')
 local lspconf = require('lspconfig')
 
 local capabilities = require('cmp_nvim_lsp')
 		.default_capabilities()
 
--- lsp_installer.setup {}
 
 -- Mappings
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -28,9 +26,9 @@ local on_attach = function(client, bufnr)
 		if client.server_capabilities.inlayHintProvider then
 			vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
 		else
-			print("Inlay Hint não suportado pelo LSP")
+			vim.print("Inlay Hint não suportado pelo LSP")
 		end
-	end, { noremap = true, silent = false } )
+	end, { noremap = true, silent = false })
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -68,7 +66,8 @@ lspconf.lua_ls.setup({
 				globals = { 'vim' },
 			},
 			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
+				library = vim.env.VIMRUNTIME,
+				-- library = vim.api.nvim_get_runtime_file("", true),
 				checkThirdParty = false,
 			},
 			telemetry = {
@@ -154,5 +153,5 @@ lspconf.hls.setup({
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities,
-  filetypes = { 'haskell', 'lhaskell', 'cabal' }
+	filetypes = { 'haskell', 'lhaskell', 'cabal' }
 })
