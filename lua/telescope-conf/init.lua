@@ -147,5 +147,6 @@ map('n', '<space>S', builtin.symbols)
 
 map('n', '<space>d',  builtin.lsp_definitions)
 map('n', '<space>r',  builtin.lsp_references)
-map('n', '<space>sw', builtin.lsp_dynamic_workspace_symbols)
+map('n', '<space>wd', builtin.lsp_dynamic_workspace_symbols)
+map('n', '<space>ws', builtin.lsp_workspace_symbols)
 map('n', '<space>,',  builtin.diagnostics)
