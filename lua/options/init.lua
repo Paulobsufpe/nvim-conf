@@ -50,9 +50,9 @@ vim.g.markdown_fenced_languages = {
 
 -- NOTE: setup omnifunc without lua (i dont know other way)
 -- vim.api.nvim_set_option('omnifunc', 'v:syntaxcomplete#Complete') -- não funciona
-vim.cmd[[set omnifunc=syntaxcomplete#Complete]]
+vim.cmd [[set omnifunc=syntaxcomplete#Complete]]
 
-vim.cmd[[autocmd BufRead,BufNewFile *.ml
+vim.cmd [[autocmd BufRead,BufNewFile *.ml
 	\ set rtp+=$HOME/.opam/default/share/merlin/vim |
 	\ set rtp^=$HOME/.opam/default/share/ocp-indent/vim]]
 
@@ -60,3 +60,15 @@ if vim.fn.executable('rg') == 1 then
 	vim.o.grepformat = '%f:%l:%c:%m'
 	vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
 end
+
+vim.api.nvim_create_user_command('Redir', function(ctx)
+	local ok, ret = pcall(vim.api.nvim_exec2, ctx.args, { output = true })
+	if (not ok) then
+		vim.print(ret); return
+	end
+	local out = ret.output
+	local lines = vim.split(out, '\n', { plain = true })
+	vim.cmd('new')
+	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+	vim.opt_local.modified = false
+end, { nargs = '+', complete = 'command' })
