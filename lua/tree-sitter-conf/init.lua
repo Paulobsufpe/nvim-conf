@@ -4,7 +4,7 @@ require 'nvim-treesitter.configs'.setup {
 		"lua", "julia", "html", "json",
 		"c_sharp", "scala", "python", "dot",
 		"javascript", "typescript",
-		"css", "yaml", "zig"
+		"css", "yaml", "zig", "haskell"
 	},
 
 	highlight = {
