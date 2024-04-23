@@ -18,6 +18,7 @@ vim.cmd("autocmd BufRead,BufNewFile *.fasm set filetype=fasm")
 -- TODO: disable nvim welcome (é possível?)
 -- TODO: QuickFixCmdPre event binding for run :w before :make
 -- TODO: Mudar find_files do Telescope para ignorar git o vcs`s
+-- TODO: add tabout.nvim
 
 if vim.g.neovide then
 	-- vim.g.neovide_font_features = {

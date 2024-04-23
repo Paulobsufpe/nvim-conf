@@ -1,5 +1,5 @@
-local actions = require('telescope.actions')
-local previewers = require('telescope.previewers')
+-- local actions = require('telescope.actions')
+-- local previewers = require('telescope.previewers')
 
 -- Clone the default Telescope configuration
 local telescopeConfig = require('telescope.config')
@@ -13,18 +13,18 @@ table.insert(vimgrep_arguments, '!**/.git/*')
 -- table.insert(vimgrep_arguments, '--trim')
 
 local select_one_or_multi = function(prompt_bufnr)
-  local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
-  local multi = picker:get_multi_selection()
-  if not vim.tbl_isempty(multi) then
-    require('telescope.actions').close(prompt_bufnr)
-    for _, j in pairs(multi) do
-      if j.path ~= nil then
-        vim.cmd(string.format("%s %s", "edit", j.path))
-      end
-    end
-  else
-    require('telescope.actions').select_default(prompt_bufnr)
-  end
+	local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
+	local multi = picker:get_multi_selection()
+	if not vim.tbl_isempty(multi) then
+		require('telescope.actions').close(prompt_bufnr)
+		for _, j in pairs(multi) do
+			if j.path ~= nil then
+				vim.cmd(string.format("%s %s", "edit", j.path))
+			end
+		end
+	else
+		require('telescope.actions').select_default(prompt_bufnr)
+	end
 end
 
 local mymaps = {
@@ -118,23 +118,35 @@ require('telescope').setup {
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 
-
-local map = vim.keymap.set
 local builtin = require('telescope.builtin')
-local opts = { noremap = true, silent = true }
+local function map(mode, lhs, rhs, opts)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend('force', options, opts)
+	end
+	vim.keymap.set(mode, lhs, rhs, options)
+end
 
-map('n', '<space>t', builtin.builtin, {})
-map('n', '<space>z', builtin.current_buffer_fuzzy_find, {})
-map('n', '<space>f', builtin.find_files, {})
-map('n', '<space>g', builtin.git_files, {})
-map('n', '<space>W', builtin.grep_string, {})
-map('n', '<space>G', builtin.live_grep, {})
-map('n', '<space>b', builtin.buffers, {})
-map('n', '<space>h', builtin.help_tags, {})
-map('n', '<space>c', builtin.commands, {})
-map('n', '<space>S', builtin.symbols, {})
+map('n', '<space>t', builtin.builtin)
+map('n', '<space>z', builtin.current_buffer_fuzzy_find)
+map('n', '<space>f', builtin.find_files)
+map('n', '<space>g', function()
+	local ok, ret = pcall(builtin.git_files)
+	if (not ok) then vim.print(ret) end
+end, {})
+map('n', '<space>M', function()
+	local ok, ret = pcall(builtin.git_status)
+	if (not ok) then vim.print(ret) end
+end, {})
+map('n', '<space>W', builtin.grep_string)
+map('n', '<space>G', builtin.live_grep)
+map('n', '<space>b', builtin.buffers)
+map('n', '<space>h', builtin.help_tags)
+map('n', '<space>c', builtin.commands)
+map('n', '<space>S', builtin.symbols)
 
-map('n', '<space>d', builtin.lsp_definitions, opts)
-map('n', '<space>r', builtin.lsp_references, opts)
-map('n', '<space>sw', builtin.lsp_dynamic_workspace_symbols, opts)
-map('n', '<space>,', builtin.diagnostics, opts)
+map('n', '<space>d',  builtin.lsp_definitions)
+map('n', '<space>r',  builtin.lsp_references)
+map('n', '<space>wd', builtin.lsp_dynamic_workspace_symbols)
+map('n', '<space>ws', builtin.lsp_workspace_symbols)
+map('n', '<space>,',  builtin.diagnostics)

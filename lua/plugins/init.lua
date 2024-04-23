@@ -137,7 +137,7 @@ require("lazy").setup({
 	'kyazdani42/nvim-web-devicons',
 	{
 		'hoob3rt/lualine.nvim',
-		dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true },
+		dependencies = { 'kyazdani42/nvim-web-devicons' },
 		-- event = "BufWinEnter",
 		config = function() require("lualine-conf") end
 	},
@@ -171,14 +171,17 @@ require("lazy").setup({
 		-- event = "BufEnter",
 		config = function() require("tree-sitter-conf") end
 	},
-	-- FIX: por algum motivo bufferline n está func. no neovim nightly
-	-- {
-	-- 	'akinsho/bufferline.nvim',
-	-- 	version = "v2.*",
-	-- 	dependencies = 'kyazdani42/nvim-web-devicons',
-	-- 	event = "BufWinEnter",
-	-- 	config = function() require("bufferline-conf") end
-	-- },
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = { 'nvim-treesitter' },
+	},
+	{
+		'akinsho/bufferline.nvim',
+		version = "*",
+		dependencies = 'kyazdani42/nvim-web-devicons',
+		event = "BufWinEnter",
+		config = function() require("bufferline-conf") end
+	},
 	{
 		'kyazdani42/nvim-tree.lua',
 		dependencies = 'kyazdani42/nvim-web-devicons',
@@ -200,6 +203,7 @@ require("lazy").setup({
 
 	{
 		'neovim/nvim-lspconfig',
+		dependencies = { 'folke/neoconf.nvim' },
 		config = function() require('lsp') end,
 		-- event = 'BufReadPost'
 	},
@@ -233,6 +237,10 @@ require("lazy").setup({
 	},
 	{ 'folke/neodev.nvim' },
 	{ 'folke/neoconf.nvim' },
+	{
+		'folke/zen-mode.nvim',
+		opts = {}
+	},
 	-- when needed, add mason.nvim for:
 	-- LSP: lspconfig & mason-lspconfig.nvim
 	-- DAP: nvim-dap
@@ -262,6 +270,17 @@ require("lazy").setup({
 			}
 		end
 	},
+	{ 
+		'fedepujol/move.nvim',
+		opts = {}
+	},
+	{
+		'ggandor/leap.nvim',
+		config = function()
+			local leap = require('leap')
+			leap.create_default_mappings()
+		end
+	}, -- jumping plugin
 	{
 		'sindrets/diffview.nvim',
 		dependencies = 'nvim-lua/plenary.nvim',
@@ -300,11 +319,6 @@ require("lazy").setup({
 	},
 
 	{ 'gluon-lang/vim-gluon' },
-	{
-		'fsharp/vim-fsharp',
-		ft = 'fsharp',
-		build = 'make fsautocomplete'
-	},
 	{ 'shirk/vim-gas' },
 
 }
