@@ -33,9 +33,9 @@ require("lazy").setup({
 	-- },
 	{
 		'olimorris/onedarkpro.nvim',
-		-- config = function()
-		-- 	vim.cmd [[colorscheme onedark]]
-		-- end
+		config = function()
+			vim.cmd [[colorscheme onedark]]
+		end
 	},
 	{
 		"neanias/everforest-nvim",
@@ -67,11 +67,11 @@ require("lazy").setup({
 	{
 		'marko-cerovac/material.nvim',
 		lazy = false,
-		config = function()
-			-- darker, lighter, oceanic, palenight, deep ocean
-			-- vim.g.material_style = 'palenight'
-			vim.cmd [[colorscheme material]]
-		end
+		-- config = function()
+		-- 	-- darker, lighter, oceanic, palenight, deep ocean
+		-- 	-- vim.g.material_style = 'palenight'
+		-- 	vim.cmd [[colorscheme material]]
+		-- end
 	},
 	{
 		'Mofiqul/dracula.nvim',
