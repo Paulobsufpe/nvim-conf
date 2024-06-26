@@ -90,7 +90,7 @@ map('n', '<space>m', ":mak ", { silent = false })
 
 -- Trouble
 
-map('n', ',,', ":Trouble workspace_diagnostics<CR>")
+map('n', ',,', ":Trouble diagnostics<CR>")
 
 -- Todo
 
