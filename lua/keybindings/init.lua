@@ -63,8 +63,8 @@ map('n', '<leader>R', ':e!<CR>')
 map('v', '>', '>gv')
 map('v', '<', '<gv')
 
-map('i', '<c-Left>',  '<esc>I')
-map('i', '<c-Right>', '<esc>A')
+map('i', '<c-Left>',  '<home>')
+map('i', '<c-Right>', '<end>')
 
 map('n', '<m-Left>',  '<c-w><Left>')
 map('n', '<m-Right>', '<c-w><Right>')
