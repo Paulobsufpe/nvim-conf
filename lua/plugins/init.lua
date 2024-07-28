@@ -33,9 +33,9 @@ require("lazy").setup({
 	-- },
 	{
 		'olimorris/onedarkpro.nvim',
-		config = function()
-			vim.cmd [[colorscheme onedark]]
-		end
+		-- config = function()
+		-- 	vim.cmd [[colorscheme onedark]]
+		-- end
 	},
 	{
 		"neanias/everforest-nvim",
@@ -90,12 +90,12 @@ require("lazy").setup({
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin',
-		-- config = function()
-		-- 	require("catppuccin").setup {},
-		-- -- latte, frappe, macchiato, mocha
-		-- 	vim.g.catppuccin_flavour = "macchiato"
-		-- 	vim.cmd [[colorscheme catppuccin]]
-		-- end
+		config = function()
+			require("catppuccin").setup {}
+			-- latte, frappe, macchiato, mocha
+			vim.g.catppuccin_flavour = "macchiato"
+			vim.cmd [[colorscheme catppuccin]]
+		end
 	},
 	{
 		'sonph/onehalf',
