@@ -20,6 +20,7 @@ require("lazy").setup({
 	{ 'rktjmp/lush.nvim' },
 	{
 		"phha/zenburn.nvim",
+		event = "VeryLazy",
 		-- config = function()
 		-- 	require("zenburn").setup()
 		-- end
@@ -33,12 +34,14 @@ require("lazy").setup({
 	-- },
 	{
 		'olimorris/onedarkpro.nvim',
+		event = "VeryLazy",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme onedark]]
 		-- end
 	},
 	{
 		"neanias/everforest-nvim",
+		event = "VeryLazy",
 		-- version = false,
 		-- lazy = false,
 		-- priority = 1000, -- make sure to load this before all the other start plugins
@@ -51,6 +54,7 @@ require("lazy").setup({
 	},
 	{
 		'sam4llis/nvim-tundra',
+		event = "VeryLazy",
 		config = function()
 			require('nvim-tundra').setup {}
 			-- vim.opt.background = 'dark'
@@ -59,6 +63,7 @@ require("lazy").setup({
 	},
 	{
 		'rose-pine/neovim',
+		event = "VeryLazy",
 		name = 'rose-pine', --, tag = 'v1.*',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme rose-pine]]
@@ -66,7 +71,8 @@ require("lazy").setup({
 	},
 	{
 		'marko-cerovac/material.nvim',
-		lazy = false,
+		event = "VeryLazy",
+		-- lazy = false,
 		-- config = function()
 		-- 	-- darker, lighter, oceanic, palenight, deep ocean
 		-- 	-- vim.g.material_style = 'palenight'
@@ -75,6 +81,7 @@ require("lazy").setup({
 	},
 	{
 		'Mofiqul/dracula.nvim',
+		event = "VeryLazy",
 		name = 'dracula',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme dracula]]
@@ -82,6 +89,7 @@ require("lazy").setup({
 	},
 	{
 		"briones-gabriel/darcula-solid.nvim",
+		event = "VeryLazy",
 		dependencies = "rktjmp/lush.nvim",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme darcula-solid]]
@@ -89,6 +97,7 @@ require("lazy").setup({
 	},
 	{
 		'catppuccin/nvim',
+		-- event = "VeryLazy",
 		name = 'catppuccin',
 		config = function()
 			require("catppuccin").setup {}
@@ -99,36 +108,42 @@ require("lazy").setup({
 	},
 	{
 		'sonph/onehalf',
+		event = "VeryLazy",
 		config = function(plugin)
 			vim.opt.rtp:append(plugin.dir .. '/vim')
 		end
 	},
 	{
 		'folke/tokyonight.nvim',
+		event = "VeryLazy",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme tokyonight]]
 		-- end
 	},
 	{
 		'rebelot/kanagawa.nvim'
+		event = "VeryLazy",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme kanagawa]]
 		-- end
 	},
 	{
 		'EdenEast/nightfox.nvim'
+		event = "VeryLazy",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme nightfox]]
 		-- end
 	},
 	{
 		'projekt0n/github-nvim-theme'
+		event = "VeryLazy",
 		-- config = function()
 		-- 	require('github-theme').setup()
 		-- end
 	},
 	{
 		'AlexvZyl/nordic.nvim',
+		event = "VeryLazy",
 		-- config = function()
 		-- 	require('nordic').load()
 		-- end
@@ -220,7 +235,7 @@ require("lazy").setup({
 		lazy = true,
 		dependencies = { 'folke/neoconf.nvim' },
 		config = function() require('lsp') end,
-		event = 'BufReadPost'
+		-- event = 'BufReadPost'
 	},
 	{ 'hrsh7th/cmp-nvim-lsp' },
 	{ 'hrsh7th/cmp-buffer' },
