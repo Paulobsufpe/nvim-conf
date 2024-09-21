@@ -237,31 +237,34 @@ require("lazy").setup({
 		config = function() require('lsp') end,
 		-- event = 'BufReadPost'
 	},
-	{ 'hrsh7th/cmp-nvim-lsp' },
-	{ 'hrsh7th/cmp-buffer' },
 	{ 
 		'hrsh7th/nvim-cmp',
 		lazy = true,
 		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"saadparwaiz1/cmp_luasnip"
 		}
 	},
-	{ 'hrsh7th/cmp-path' },
-	{ 'hrsh7th/cmp-nvim-lua' },
-	{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
+	{ 'hrsh7th/cmp-nvim-lsp', lazy = true },
+	{ 'hrsh7th/cmp-nvim-lua', lazy = true },
+	{ 'hrsh7th/cmp-buffer', lazy = true },
+	{ 'hrsh7th/cmp-path', lazy = true },
+	{ 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
 	{ 'L3MON4D3/LuaSnip' },
+	{ 'rafamadriz/friendly-snippets' },
 	{
 		'saadparwaiz1/cmp_luasnip',
+		lazy = true,
 		dependencies = {
 			'L3MON4D3/LuaSnip',
 			'rafamadriz/friendly-snippets'
 		}
 	},
-	{ 'rafamadriz/friendly-snippets' },
 	{
 		'j-hui/fidget.nvim',
 		lazy = true,
