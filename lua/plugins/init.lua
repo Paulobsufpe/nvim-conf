@@ -243,7 +243,7 @@ require("lazy").setup({
 		-- after = 'nvim-lspconfig'
 	},
 	{ 
-		'onsails/lspkind-nvim'
+		'onsails/lspkind-nvim',
 		lazy = true
 	},
 	{
