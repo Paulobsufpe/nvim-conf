@@ -1,7 +1,9 @@
-require'nvim-tree'.setup {
+require('nvim-tree').setup {
 	disable_netrw = true,
 	hijack_netrw = true,
-	nvim_tree_highlight_opened_files = 1,
+	update_focused_file = { enable = true },
+	sync_root_with_cwd = true,
+	prefer_startup_root = true,
 
 	git = {
 		enable = true,
