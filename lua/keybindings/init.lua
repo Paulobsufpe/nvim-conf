@@ -37,6 +37,7 @@ map(
 			on = true
 		end)
 
+		require('lspconfig')
 		if on then
 			vim.cmd('LspStop')
 		else
