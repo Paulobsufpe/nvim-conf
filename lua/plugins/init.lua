@@ -155,7 +155,7 @@ require("lazy").setup({
 		'hoob3rt/lualine.nvim',
 		dependencies = { 'kyazdani42/nvim-web-devicons' },
 		event = "BufWinEnter",
-		config = function() require("lualine-conf") end
+		config = function() require("plugins/lualine") end
 	},
 
 	{ 
@@ -192,7 +192,7 @@ require("lazy").setup({
 		'nvim-treesitter/nvim-treesitter',
 		build = ":TSUpdate",
 		-- event = "BufEnter",
-		config = function() require("tree-sitter-conf") end
+		config = function() require("plugins/tree-sitter") end
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
@@ -204,14 +204,14 @@ require("lazy").setup({
 		version = "*",
 		dependencies = 'kyazdani42/nvim-web-devicons',
 		event = "BufWinEnter",
-		config = function() require("bufferline-conf") end
+		config = function() require("plugins/bufferline") end
 	},
 	{
 		'kyazdani42/nvim-tree.lua',
 		lazy = false,
 		dependencies = 'kyazdani42/nvim-web-devicons',
 		cmd = "NvimTreeToggle",
-		config = function() require("nvim-tree-conf") end
+		config = function() require("plugins/nvim-tree") end
 	},
 
 	-- {'folke/which-key.nvim', event = "BufWinEnter", config = "require('whichkey-config')"},
@@ -224,11 +224,11 @@ require("lazy").setup({
 			'nvim-telescope/telescope-symbols.nvim'
 		},
 		cmd = "Telescope",
-		config = function() require("telescope-conf") end,
+		config = function() require("plugins/telescope") end,
 		event = 'BufWinEnter'
 	},
-	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-	{ 'nvim-telescope/telescope-symbols.nvim' },
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
+	{ 'nvim-telescope/telescope-symbols.nvim', lazy = true },
 
 	{
 		'neovim/nvim-lspconfig',
@@ -239,7 +239,7 @@ require("lazy").setup({
 			'j-hui/fidget.nvim',
 			'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 		},
-		config = function() require('lsp') end,
+		config = function() require('plugins/lsp') end,
 	},
 	{ 
 		'hrsh7th/nvim-cmp',
@@ -303,13 +303,13 @@ require("lazy").setup({
 	{
 		'norcalli/nvim-colorizer.lua',
 		lazy = true,
-		config = function() require("colorizer-conf") end,
+		config = function() require("plugins/colorizer") end,
 		event = "BufWinEnter"
 	},
 	{
 		'terrortylor/nvim-comment',
 		lazy = true,
-		config = function() require("nvim-comment-conf") end,
+		config = function() require("plugins/nvim-comment") end,
 		event = "VeryLazy"
 	},
 	-- {
