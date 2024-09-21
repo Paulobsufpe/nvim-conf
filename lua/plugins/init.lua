@@ -17,10 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-	{ 'rktjmp/lush.nvim' },
+	{ 'rktjmp/lush.nvim', lazy = true },
 	{
 		"phha/zenburn.nvim",
-		event = "VeryLazy",
+		lazy = true,
 		-- config = function()
 		-- 	require("zenburn").setup()
 		-- end
@@ -34,16 +34,15 @@ require("lazy").setup({
 	-- },
 	{
 		'olimorris/onedarkpro.nvim',
-		event = "VeryLazy",
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme onedark]]
 		-- end
 	},
 	{
 		"neanias/everforest-nvim",
-		event = "VeryLazy",
+		lazy = true,
 		-- version = false,
-		-- lazy = false,
 		-- priority = 1000, -- make sure to load this before all the other start plugins
 		-- -- Optional; default configuration will be used if setup isn't called.
 		-- config = function()
@@ -54,7 +53,7 @@ require("lazy").setup({
 	},
 	{
 		'sam4llis/nvim-tundra',
-		event = "VeryLazy",
+		lazy = true,
 		config = function()
 			require('nvim-tundra').setup {}
 			-- vim.opt.background = 'dark'
@@ -63,7 +62,7 @@ require("lazy").setup({
 	},
 	{
 		'rose-pine/neovim',
-		event = "VeryLazy",
+		lazy = true,
 		name = 'rose-pine', --, tag = 'v1.*',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme rose-pine]]
@@ -71,8 +70,7 @@ require("lazy").setup({
 	},
 	{
 		'marko-cerovac/material.nvim',
-		event = "VeryLazy",
-		-- lazy = false,
+		lazy = true,
 		-- config = function()
 		-- 	-- darker, lighter, oceanic, palenight, deep ocean
 		-- 	-- vim.g.material_style = 'palenight'
@@ -81,7 +79,7 @@ require("lazy").setup({
 	},
 	{
 		'Mofiqul/dracula.nvim',
-		event = "VeryLazy",
+		lazy = true,
 		name = 'dracula',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme dracula]]
@@ -89,7 +87,7 @@ require("lazy").setup({
 	},
 	{
 		"briones-gabriel/darcula-solid.nvim",
-		event = "VeryLazy",
+		lazy = true,
 		dependencies = "rktjmp/lush.nvim",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme darcula-solid]]
@@ -97,7 +95,7 @@ require("lazy").setup({
 	},
 	{
 		'catppuccin/nvim',
-		-- event = "VeryLazy",
+		lazy = false,
 		name = 'catppuccin',
 		config = function()
 			require("catppuccin").setup {}
@@ -108,42 +106,42 @@ require("lazy").setup({
 	},
 	{
 		'sonph/onehalf',
-		event = "VeryLazy",
+		lazy = true,
 		config = function(plugin)
 			vim.opt.rtp:append(plugin.dir .. '/vim')
 		end
 	},
 	{
 		'folke/tokyonight.nvim',
-		event = "VeryLazy",
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme tokyonight]]
 		-- end
 	},
 	{
 		'rebelot/kanagawa.nvim',
-		event = "VeryLazy",
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme kanagawa]]
 		-- end
 	},
 	{
 		'EdenEast/nightfox.nvim',
-		event = "VeryLazy",
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme nightfox]]
 		-- end
 	},
 	{
 		'projekt0n/github-nvim-theme',
-		event = "VeryLazy",
+		lazy = true,
 		-- config = function()
 		-- 	require('github-theme').setup()
 		-- end
 	},
 	{
 		'AlexvZyl/nordic.nvim',
-		event = "VeryLazy",
+		lazy = true,
 		-- config = function()
 		-- 	require('nordic').load()
 		-- end
@@ -162,7 +160,7 @@ require("lazy").setup({
 
 	{ 
 		'junegunn/vim-easy-align',
-		lazy = true
+		lazy = true, event = "VeryLazy"
 	},
 	{ 'nvim-lua/plenary.nvim' },
 	{
@@ -170,27 +168,25 @@ require("lazy").setup({
 		lazy = true,
 		dependencies = "nvim-lua/plenary.nvim",
 		config = function() require("todo-comments").setup {} end,
-		event = 'BufRead'
+		event = 'BufWinEnter'
 	},
 	{
 		'sheerun/vim-polyglot',
-		lazy = true
 		-- event = 'BufReadPre'
 	},
 	{ 
 		'CraneStation/cranelift.vim',
-		lazy = true
+		event = 'BufRead *.clif'
 	},
 	{
 		'JuliaEditorSupport/julia-vim',
-		lazy = true,
-		-- event = 'BufReadPre'
+		event = 'BufRead *.jl, *.jll'
 	},
 	{
 		'glts/vim-radical',
 		lazy = true,
 		dependencies = { 'glts/vim-magnum' },
-		event = 'VimEnter'
+		event = 'VeryLazy'
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
@@ -222,7 +218,11 @@ require("lazy").setup({
 	{
 		'nvim-telescope/telescope.nvim',
 		lazy = true,
-		dependencies = { 'nvim-lua/plenary.nvim' },
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope-fzf-native.nvim',
+			'nvim-telescope/telescope-symbols.nvim'
+		},
 		cmd = "Telescope",
 		config = function() require("telescope-conf") end,
 		event = 'BufWinEnter'
@@ -233,21 +233,27 @@ require("lazy").setup({
 	{
 		'neovim/nvim-lspconfig',
 		lazy = true,
-		dependencies = { 'folke/neoconf.nvim' },
+		dependencies = {
+			'folke/neoconf.nvim',
+			'folke/trouble.nvim',
+			'j-hui/fidget.nvim',
+			'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+		},
 		config = function() require('lsp') end,
-		-- event = 'BufReadPost'
 	},
 	{ 
 		'hrsh7th/nvim-cmp',
 		lazy = true,
 		event = "InsertEnter",
 		dependencies = {
+			'neovim/nvim-lspconfig',
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"saadparwaiz1/cmp_luasnip"
+			"saadparwaiz1/cmp_luasnip",
+			"onsails/lspkind-nvim"
 		}
 	},
 	{ 'hrsh7th/cmp-nvim-lsp', lazy = true },
@@ -255,8 +261,8 @@ require("lazy").setup({
 	{ 'hrsh7th/cmp-buffer', lazy = true },
 	{ 'hrsh7th/cmp-path', lazy = true },
 	{ 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
-	{ 'L3MON4D3/LuaSnip' },
-	{ 'rafamadriz/friendly-snippets' },
+	{ 'L3MON4D3/LuaSnip', lazy = true },
+	{ 'rafamadriz/friendly-snippets', lazy = true },
 	{
 		'saadparwaiz1/cmp_luasnip',
 		lazy = true,
@@ -268,10 +274,8 @@ require("lazy").setup({
 	{
 		'j-hui/fidget.nvim',
 		lazy = true,
-		dependencies = 'neovim/nvim-lspconfig',
 		tag = 'legacy',
 		config = function() require("fidget").setup {} end,
-		-- after = 'nvim-lspconfig'
 	},
 	{ 
 		'onsails/lspkind-nvim',
@@ -283,11 +287,12 @@ require("lazy").setup({
 		dependencies = "kyazdani42/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
 	},
-	{ 'folke/neodev.nvim' },
-	{ 'folke/neoconf.nvim' },
+	{ 'folke/neodev.nvim', lazy = true },
+	{ 'folke/neoconf.nvim', lazy = true },
 	{
 		'folke/zen-mode.nvim',
 		lazy = true,
+		event = "VeryLazy", -- maybe BufWinEnter for using with -c
 		opts = {}
 	},
 	-- when needed, add mason.nvim for:
@@ -299,13 +304,13 @@ require("lazy").setup({
 		'norcalli/nvim-colorizer.lua',
 		lazy = true,
 		config = function() require("colorizer-conf") end,
-		event = "BufRead"
+		event = "BufWinEnter"
 	},
 	{
 		'terrortylor/nvim-comment',
 		lazy = true,
 		config = function() require("nvim-comment-conf") end,
-		event = "BufReadPost"
+		event = "VeryLazy"
 	},
 	-- {
 	-- 	'yorickpeterse/nvim-pqf',
@@ -325,6 +330,7 @@ require("lazy").setup({
 	{ 
 		'fedepujol/move.nvim',
 		lazy = true,
+		event = "VeryLazy",
 		opts = {}
 	},
 	{
@@ -334,13 +340,13 @@ require("lazy").setup({
 			local leap = require('leap')
 			leap.create_default_mappings()
 		end,
-		event = 'BufWinEnter'
+		event = 'VeryLazy'
 	}, -- jumping plugin
 	{
 		'sindrets/diffview.nvim',
 		lazy = true,
 		dependencies = 'nvim-lua/plenary.nvim',
-		event = 'VimEnter'
+		event = 'BufWinEnter'
 	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
@@ -372,7 +378,6 @@ require("lazy").setup({
 		config = function()
 			require("toggle_lsp_diagnostics").init { start_on = false }
 		end,
-		after = 'nvim-lspconfig'
 	},
 
 	{ 'gluon-lang/vim-gluon' },
