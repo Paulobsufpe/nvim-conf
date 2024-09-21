@@ -1,7 +1,3 @@
--- return require('packer').startup(function(use)
--- Packer can manage itself
--- use { 'wbthomason/packer.nvim' }
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -21,9 +17,7 @@ require("lazy").setup({
 	{
 		"phha/zenburn.nvim",
 		lazy = true,
-		-- config = function()
-		-- 	require("zenburn").setup()
-		-- end
+		-- opts = {}
 	},
 	-- {
 	-- 	'navarasu/onedark.nvim',
@@ -54,11 +48,11 @@ require("lazy").setup({
 	{
 		'sam4llis/nvim-tundra',
 		lazy = true,
-		config = function()
-			require('nvim-tundra').setup {}
-			-- vim.opt.background = 'dark'
-			-- vim.cmd [[colorscheme tundra]]
-		end
+		-- config = function()
+		-- 	require('nvim-tundra').setup {}
+		-- 	vim.opt.background = 'dark'
+		-- 	vim.cmd [[colorscheme tundra]]
+		-- end
 	},
 	{
 		'rose-pine/neovim',
@@ -97,6 +91,7 @@ require("lazy").setup({
 		'catppuccin/nvim',
 		lazy = false,
 		name = 'catppuccin',
+		priority = 1000,
 		config = function()
 			require("catppuccin").setup {}
 			-- latte, frappe, macchiato, mocha
@@ -162,17 +157,15 @@ require("lazy").setup({
 		'junegunn/vim-easy-align',
 		lazy = true, event = "VeryLazy"
 	},
-	{ 'nvim-lua/plenary.nvim' },
+	{ 'nvim-lua/plenary.nvim', lazy = true },
 	{
 		"folke/todo-comments.nvim",
-		lazy = true,
 		dependencies = "nvim-lua/plenary.nvim",
 		config = function() require("todo-comments").setup {} end,
 		event = 'BufWinEnter'
 	},
 	{
 		'sheerun/vim-polyglot',
-		-- event = 'BufReadPre'
 	},
 	{ 
 		'CraneStation/cranelift.vim',
@@ -184,20 +177,20 @@ require("lazy").setup({
 	},
 	{
 		'glts/vim-radical',
-		lazy = true,
 		dependencies = { 'glts/vim-magnum' },
 		event = 'VeryLazy'
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
+		lazy = true,
+		event = "BufEnter",
 		build = ":TSUpdate",
-		-- event = "BufEnter",
+		dependencies = { 'nvim-treesitter' },
 		config = function() require("plugins/tree-sitter") end
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		lazy = true,
-		dependencies = { 'nvim-treesitter' },
+		lazy = true
 	},
 	{
 		'akinsho/bufferline.nvim',
@@ -234,6 +227,7 @@ require("lazy").setup({
 		'neovim/nvim-lspconfig',
 		lazy = true,
 		dependencies = {
+			'folke/neodev.nvim',
 			'folke/neoconf.nvim',
 			'folke/trouble.nvim',
 			'j-hui/fidget.nvim',
@@ -243,7 +237,6 @@ require("lazy").setup({
 	},
 	{ 
 		'hrsh7th/nvim-cmp',
-		lazy = true,
 		event = "InsertEnter",
 		dependencies = {
 			'neovim/nvim-lspconfig',
@@ -291,7 +284,6 @@ require("lazy").setup({
 	{ 'folke/neoconf.nvim', lazy = true },
 	{
 		'folke/zen-mode.nvim',
-		lazy = true,
 		event = "VeryLazy", -- maybe BufWinEnter for using with -c
 		opts = {}
 	},
@@ -302,13 +294,11 @@ require("lazy").setup({
 	-- Formatters: null-ls.nvim or formatter.nvim
 	{
 		'norcalli/nvim-colorizer.lua',
-		lazy = true,
 		config = function() require("plugins/colorizer") end,
 		event = "BufWinEnter"
 	},
 	{
 		'terrortylor/nvim-comment',
-		lazy = true,
 		config = function() require("plugins/nvim-comment") end,
 		event = "VeryLazy"
 	},
@@ -318,7 +308,6 @@ require("lazy").setup({
 	-- },
 	{
 		'kevinhwang91/nvim-bqf',
-		lazy = true,
 		ft = 'qf',
 		config = function() require("bqf").setup {
 				preview = {
@@ -329,13 +318,11 @@ require("lazy").setup({
 	},
 	{ 
 		'fedepujol/move.nvim',
-		lazy = true,
 		event = "VeryLazy",
 		opts = {}
 	},
 	{
 		'ggandor/leap.nvim',
-		lazy = true,
 		config = function()
 			local leap = require('leap')
 			leap.create_default_mappings()
@@ -344,7 +331,6 @@ require("lazy").setup({
 	}, -- jumping plugin
 	{
 		'sindrets/diffview.nvim',
-		lazy = true,
 		dependencies = 'nvim-lua/plenary.nvim',
 		event = 'BufWinEnter'
 	},
@@ -365,6 +351,7 @@ require("lazy").setup({
 				}
 			}
 		end,
+		event = "BufEnter",
 		opts = {},
 	},
 	{
