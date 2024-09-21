@@ -121,21 +121,21 @@ require("lazy").setup({
 		-- end
 	},
 	{
-		'rebelot/kanagawa.nvim'
+		'rebelot/kanagawa.nvim',
 		event = "VeryLazy",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme kanagawa]]
 		-- end
 	},
 	{
-		'EdenEast/nightfox.nvim'
+		'EdenEast/nightfox.nvim',
 		event = "VeryLazy",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme nightfox]]
 		-- end
 	},
 	{
-		'projekt0n/github-nvim-theme'
+		'projekt0n/github-nvim-theme',
 		event = "VeryLazy",
 		-- config = function()
 		-- 	require('github-theme').setup()
