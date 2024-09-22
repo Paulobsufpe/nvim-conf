@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-	{ 'rktjmp/lush.nvim', lazy = true },
+	{ 'rktjmp/lush.nvim',      lazy = true },
 	{
 		"phha/zenburn.nvim",
 		lazy = true,
@@ -142,7 +142,7 @@ require("lazy").setup({
 		-- end
 	},
 
-	{ 
+	{
 		'kyazdani42/nvim-web-devicons',
 		lazy = true
 	},
@@ -153,9 +153,10 @@ require("lazy").setup({
 		config = function() require("plugins/lualine") end
 	},
 
-	{ 
+	{
 		'junegunn/vim-easy-align',
-		lazy = true, event = "VeryLazy"
+		lazy = true,
+		event = "VeryLazy"
 	},
 	{ 'nvim-lua/plenary.nvim', lazy = true },
 	{
@@ -167,7 +168,7 @@ require("lazy").setup({
 	{
 		'sheerun/vim-polyglot',
 	},
-	{ 
+	{
 		'CraneStation/cranelift.vim',
 		event = 'BufRead *.clif'
 	},
@@ -221,7 +222,7 @@ require("lazy").setup({
 		event = 'BufWinEnter'
 	},
 	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
-	{ 'nvim-telescope/telescope-symbols.nvim', lazy = true },
+	{ 'nvim-telescope/telescope-symbols.nvim',    lazy = true },
 
 	{
 		'neovim/nvim-lspconfig',
@@ -235,7 +236,7 @@ require("lazy").setup({
 		},
 		config = function() require('plugins/lsp') end,
 	},
-	{ 
+	{
 		'hrsh7th/nvim-cmp',
 		event = "InsertEnter",
 		dependencies = {
@@ -249,13 +250,13 @@ require("lazy").setup({
 			"onsails/lspkind-nvim"
 		}
 	},
-	{ 'hrsh7th/cmp-nvim-lsp', lazy = true },
-	{ 'hrsh7th/cmp-nvim-lua', lazy = true },
-	{ 'hrsh7th/cmp-buffer', lazy = true },
-	{ 'hrsh7th/cmp-path', lazy = true },
+	{ 'hrsh7th/cmp-nvim-lsp',                lazy = true },
+	{ 'hrsh7th/cmp-nvim-lua',                lazy = true },
+	{ 'hrsh7th/cmp-buffer',                  lazy = true },
+	{ 'hrsh7th/cmp-path',                    lazy = true },
 	{ 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
-	{ 'L3MON4D3/LuaSnip', lazy = true },
-	{ 'rafamadriz/friendly-snippets', lazy = true },
+	{ 'L3MON4D3/LuaSnip',                    lazy = true },
+	{ 'rafamadriz/friendly-snippets',        lazy = true },
 	{
 		'saadparwaiz1/cmp_luasnip',
 		lazy = true,
@@ -270,7 +271,7 @@ require("lazy").setup({
 		tag = 'legacy',
 		config = function() require("fidget").setup {} end,
 	},
-	{ 
+	{
 		'onsails/lspkind-nvim',
 		lazy = true
 	},
@@ -280,7 +281,7 @@ require("lazy").setup({
 		dependencies = "kyazdani42/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
 	},
-	{ 'folke/neodev.nvim', lazy = true },
+	{ 'folke/neodev.nvim',  lazy = true },
 	{ 'folke/neoconf.nvim', lazy = true },
 	{
 		'folke/zen-mode.nvim',
@@ -309,14 +310,13 @@ require("lazy").setup({
 	{
 		'kevinhwang91/nvim-bqf',
 		ft = 'qf',
-		config = function() require("bqf").setup {
-				preview = {
-					auto_preview = false
-				}
+		opts = {
+			preview = {
+				auto_preview = false
 			}
-		end
+		}
 	},
-	{ 
+	{
 		'fedepujol/move.nvim',
 		event = "VeryLazy",
 		opts = {}
