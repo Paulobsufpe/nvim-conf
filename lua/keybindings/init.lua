@@ -72,6 +72,8 @@ map('n', '<m-Right>', '<c-w><Right>')
 map('n', '<m-Up>',    '<c-w><Up>')
 map('n', '<m-Down>',  '<c-w><Down>')
 
+map('n', '<m-t>',  ':terminal<cr>')
+
 -- Tabs
 
 map('n', ']t', ':tabnext<CR>', { silent = true })
@@ -142,3 +144,10 @@ map('v', '<C-j>', ':MoveBlock(1)<CR>', opts)
 map('v', '<C-k>', ':MoveBlock(-1)<CR>', opts)
 -- map('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
 -- map('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
+
+-- Terminal-mode commands
+map('t', '<C-x>', '<C-\\><C-n>')
+map('t', '<m-Left>',  '<C-\\><C-n><c-w><Left>')
+map('t', '<m-Right>', '<C-\\><C-n><c-w><Right>')
+map('t', '<m-Up>',    '<C-\\><C-n><c-w><Up>')
+map('t', '<m-Down>',  '<C-\\><C-n><c-w><Down>')
