@@ -33,6 +33,10 @@ local mymaps = {
 
 require('telescope').setup {
 	defaults = {
+		file_ignore_patterns = { 
+			".cache/clangd",
+      "node_modules" 
+    },
 		mappings = {
 			i = mymaps, n = mymaps
 		},
