@@ -186,7 +186,6 @@ require("lazy").setup({
 		lazy = true,
 		event = "BufEnter",
 		build = ":TSUpdate",
-		dependencies = { 'nvim-treesitter' },
 		config = function() require("plugins/tree-sitter") end
 	},
 	{
@@ -221,14 +220,19 @@ require("lazy").setup({
 		config = function() require("plugins/telescope") end,
 		event = 'BufWinEnter'
 	},
-	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
+	-- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
+	{
+		'nvim-telescope/telescope-fzf-native.nvim',
+		url = "/home/paulobs/Develop/telescope-fzf-native.nvim",
+		build = 'make',
+		lazy = true
+	},
 	{ 'nvim-telescope/telescope-symbols.nvim',    lazy = true },
 
 	{
 		'neovim/nvim-lspconfig',
 		lazy = true,
 		dependencies = {
-			'folke/neodev.nvim',
 			'folke/neoconf.nvim',
 			'folke/trouble.nvim',
 			'j-hui/fidget.nvim',
@@ -281,7 +285,17 @@ require("lazy").setup({
 		dependencies = "kyazdani42/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
 	},
-	{ 'folke/neodev.nvim',  lazy = true },
+	{ 'folke/lazydev.nvim',
+		ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+		lazy = true
+	},
 	{ 'folke/neoconf.nvim', lazy = true },
 	{
 		'folke/zen-mode.nvim',

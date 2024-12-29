@@ -69,7 +69,8 @@ cmp.setup({
 		-- { name = 'ultisnips' },
 		{ name = 'buffer' },
 		{ name = 'path' },
-		{ name = 'nvim_lsp_signature_help' }
+		{ name = 'nvim_lsp_signature_help' },
+		{ name = 'lazydev', group_index = 0 }
 	},
 	formatting = {
 		format = lspkind.cmp_format({
