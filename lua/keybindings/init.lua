@@ -60,9 +60,9 @@ map(
 
 map('n', '<leader>R', ':e!<CR>')
 
--- NOTE: talvez deva mudar isso depois para liberar o comando '>' puro.
-map('v', '>', '>gv')
-map('v', '<', '<gv')
+-- BUG: Doesnt work anymore. Really dont know why :(
+-- map('v', '>', '>gv')
+-- map('v', '<', '<gv')
 
 map('i', '<c-Left>', '<home>')
 map('i', '<c-Right>', '<end>')
@@ -103,10 +103,10 @@ map('n', ';;', ":TodoLocList<CR>")
 
 -- BufferLine
 
--- map('n', ']b', ':BufferLineCycleNext<CR>', { silent = true })
--- map('n', '[b', ':BufferLineCyclePrev<CR>', { silent = true })
-map('n', ']b', ':bnext<CR>', { silent = true })
-map('n', '[b', ':bNext<CR>', { silent = true })
+map('n', ']b', ':BufferLineCycleNext<CR>', { silent = true })
+map('n', '[b', ':BufferLineCyclePrev<CR>', { silent = true })
+-- map('n', ']b', ':bnext<CR>', { silent = true })
+-- map('n', '[b', ':bNext<CR>', { silent = true })
 
 -- map('n', 'm>', ':BufferLineMoveNext<CR>', { silent = true })
 -- map('n', 'm<', ':BufferLineMovePrev<CR>', { silent = true })
