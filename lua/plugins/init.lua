@@ -1,16 +1,16 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out,                            "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -231,7 +231,7 @@ require("lazy").setup({
 		build = 'make',
 		lazy = true
 	},
-	{ 'nvim-telescope/telescope-symbols.nvim',    lazy = true },
+	{ 'nvim-telescope/telescope-symbols.nvim', lazy = true },
 
 	{
 		'neovim/nvim-lspconfig',
@@ -258,13 +258,13 @@ require("lazy").setup({
 			"onsails/lspkind-nvim"
 		}
 	},
-	{ 'hrsh7th/cmp-nvim-lsp',                lazy = true },
-	{ 'hrsh7th/cmp-nvim-lua',                lazy = true },
-	{ 'hrsh7th/cmp-buffer',                  lazy = true },
-	{ 'hrsh7th/cmp-path',                    lazy = true },
-	{ 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
-	{ 'L3MON4D3/LuaSnip',                    lazy = true },
-	{ 'rafamadriz/friendly-snippets',        lazy = true },
+	{ 'hrsh7th/cmp-nvim-lsp',                  lazy = true },
+	{ 'hrsh7th/cmp-nvim-lua',                  lazy = true },
+	{ 'hrsh7th/cmp-buffer',                    lazy = true },
+	{ 'hrsh7th/cmp-path',                      lazy = true },
+	{ 'hrsh7th/cmp-nvim-lsp-signature-help',   lazy = true },
+	{ 'L3MON4D3/LuaSnip',                      lazy = true },
+	{ 'rafamadriz/friendly-snippets',          lazy = true },
 	{
 		'saadparwaiz1/cmp_luasnip',
 		lazy = true,
@@ -289,15 +289,20 @@ require("lazy").setup({
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
 	},
-	{ 'folke/lazydev.nvim',
+	{
+		'folke/lazydev.nvim',
 		ft = "lua", -- only load on lua files
-    opts = {
-      library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+			-- disable when a .luarc.json file is found
+			enabled = function(root_dir)
+				return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+			end,
+		},
 		lazy = true
 	},
 	{ 'folke/neoconf.nvim', lazy = true },
