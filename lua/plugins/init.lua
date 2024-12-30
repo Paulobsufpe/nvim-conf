@@ -146,12 +146,12 @@ require("lazy").setup({
 	},
 
 	{
-		'kyazdani42/nvim-web-devicons',
+		'nvim-tree/nvim-web-devicons',
 		lazy = true
 	},
 	{
 		'hoob3rt/lualine.nvim',
-		dependencies = { 'kyazdani42/nvim-web-devicons' },
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		event = "BufWinEnter",
 		config = function() require("plugins/lualine") end
 	},
@@ -170,6 +170,7 @@ require("lazy").setup({
 	},
 	{
 		'sheerun/vim-polyglot',
+		lazy = true,
 	},
 	{
 		'CraneStation/cranelift.vim',
@@ -198,14 +199,14 @@ require("lazy").setup({
 	{
 		'akinsho/bufferline.nvim',
 		version = "*",
-		dependencies = 'kyazdani42/nvim-web-devicons',
+		dependencies = 'nvim-tree/nvim-web-devicons',
 		event = "BufWinEnter",
 		config = function() require("plugins/bufferline") end
 	},
 	{
-		'kyazdani42/nvim-tree.lua',
-		lazy = false,
-		dependencies = 'kyazdani42/nvim-web-devicons',
+		'nvim-tree/nvim-tree.lua',
+		lazy = true,
+		dependencies = 'nvim-tree/nvim-web-devicons',
 		cmd = "NvimTreeToggle",
 		config = function() require("plugins/nvim-tree") end
 	},
@@ -285,7 +286,7 @@ require("lazy").setup({
 	{
 		'folke/trouble.nvim',
 		lazy = true,
-		dependencies = "kyazdani42/nvim-web-devicons",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
 	},
 	{ 'folke/lazydev.nvim',
@@ -384,7 +385,6 @@ require("lazy").setup({
 		end,
 	},
 
-	{ 'gluon-lang/vim-gluon' },
 	{ 'shirk/vim-gas' },
 
 }
