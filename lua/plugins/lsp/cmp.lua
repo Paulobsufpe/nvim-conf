@@ -64,17 +64,26 @@ cmp.setup({
 	},
 	formatting = {
 		format = lspkind.cmp_format({
-			with_text = true,
-			-- maxwidth = 56,
+			mode = 'symbol_text',
+			maxwidth = {
+				-- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+				-- can also be a function to dynamically calculate max width such as
+				-- menu = function() return math.floor(0.40 * vim.o.columns) end,
+				menu = 32, -- leading text (labelDetails)
+				-- abbr = 50, -- actual suggestion item
+			},
+			ellipsis_char = '...',
 			menu = {
 				nvim_lsp = "[lsp]",
 				nvim_lua = "[api]",
+				lazydev = "[apiL]",
 				-- omni = "[omni]",
 				luasnip = "[snip]",
 				buffer = "[buf]",
 				path = "[path]",
 				-- gh_issues = "[issues]",
 			},
+			show_labelDetails = true, -- show labelDetails in menu. Disabled by default
 		})
 	}
 })
