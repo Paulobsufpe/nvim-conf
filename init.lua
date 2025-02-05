@@ -1,7 +1,7 @@
 
 require("options")
-require("keybindings")
 require("plugins")
+require("keybindings")
 
 -- vim.cmd("colorscheme dracula")
 vim.cmd("autocmd BufRead,BufNewFile *.porth set filetype=porth")

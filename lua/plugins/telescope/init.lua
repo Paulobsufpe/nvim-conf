@@ -33,6 +33,10 @@ local mymaps = {
 
 require('telescope').setup {
 	defaults = {
+		file_ignore_patterns = { 
+			".cache/clangd",
+      "node_modules" 
+    },
 		mappings = {
 			i = mymaps, n = mymaps
 		},
@@ -128,6 +132,7 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map('n', '<space>t', builtin.builtin)
+map('n', '<space>T', builtin.colorscheme)
 map('n', '<space>z', builtin.current_buffer_fuzzy_find)
 map('n', '<space>f', builtin.find_files)
 map('n', '<space>g', function()

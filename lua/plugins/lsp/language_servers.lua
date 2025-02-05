@@ -1,10 +1,9 @@
-require('neodev').setup {}
 require('neoconf').setup {}
 local lspconf = require('lspconfig')
 
-local capabilities = require('cmp_nvim_lsp')
-		.default_capabilities()
-
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp')
+		.default_capabilities(capabilities)
 
 -- Mappings
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -65,11 +64,12 @@ lspconf.lua_ls.setup({
 			diagnostics = {
 				globals = { 'vim' },
 			},
-			workspace = {
-				library = vim.env.VIMRUNTIME,
-				-- library = vim.api.nvim_get_runtime_file("", true),
-				checkThirdParty = false,
-			},
+			-- NOTE: seams like lazydev will do that for me
+			-- workspace = {
+			-- 	library = vim.env.VIMRUNTIME,
+			-- 	-- library = vim.api.nvim_get_runtime_file("", true),
+			-- 	checkThirdParty = false,
+			-- },
 			telemetry = {
 				enable = false,
 			},

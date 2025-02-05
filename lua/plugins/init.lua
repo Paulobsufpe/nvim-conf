@@ -1,28 +1,26 @@
--- return require('packer').startup(function(use)
--- Packer can manage itself
--- use { 'wbthomason/packer.nvim' }
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-	{ 'rktjmp/lush.nvim' },
+	{ 'rktjmp/lush.nvim',      lazy = true },
 	{
 		"phha/zenburn.nvim",
-		-- config = function()
-		-- 	require("zenburn").setup()
-		-- end
+		lazy = true,
+		-- opts = {}
 	},
 	-- {
 	-- 	'navarasu/onedark.nvim',
@@ -33,14 +31,15 @@ require("lazy").setup({
 	-- },
 	{
 		'olimorris/onedarkpro.nvim',
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme onedark]]
 		-- end
 	},
 	{
 		"neanias/everforest-nvim",
+		lazy = true,
 		-- version = false,
-		-- lazy = false,
 		-- priority = 1000, -- make sure to load this before all the other start plugins
 		-- -- Optional; default configuration will be used if setup isn't called.
 		-- config = function()
@@ -51,14 +50,16 @@ require("lazy").setup({
 	},
 	{
 		'sam4llis/nvim-tundra',
-		config = function()
-			require('nvim-tundra').setup {}
-			-- vim.opt.background = 'dark'
-			-- vim.cmd [[colorscheme tundra]]
-		end
+		lazy = true,
+		-- config = function()
+		-- 	require('nvim-tundra').setup {}
+		-- 	vim.opt.background = 'dark'
+		-- 	vim.cmd [[colorscheme tundra]]
+		-- end
 	},
 	{
 		'rose-pine/neovim',
+		lazy = true,
 		name = 'rose-pine', --, tag = 'v1.*',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme rose-pine]]
@@ -66,7 +67,7 @@ require("lazy").setup({
 	},
 	{
 		'marko-cerovac/material.nvim',
-		lazy = false,
+		lazy = true,
 		-- config = function()
 		-- 	-- darker, lighter, oceanic, palenight, deep ocean
 		-- 	-- vim.g.material_style = 'palenight'
@@ -75,6 +76,7 @@ require("lazy").setup({
 	},
 	{
 		'Mofiqul/dracula.nvim',
+		lazy = true,
 		name = 'dracula',
 		-- config = function()
 		-- 	vim.cmd [[colorscheme dracula]]
@@ -82,6 +84,7 @@ require("lazy").setup({
 	},
 	{
 		"briones-gabriel/darcula-solid.nvim",
+		lazy = true,
 		dependencies = "rktjmp/lush.nvim",
 		-- config = function()
 		-- 	vim.cmd [[colorscheme darcula-solid]]
@@ -89,7 +92,9 @@ require("lazy").setup({
 	},
 	{
 		'catppuccin/nvim',
+		lazy = false,
 		name = 'catppuccin',
+		priority = 1000,
 		config = function()
 			require("catppuccin").setup {}
 			-- latte, frappe, macchiato, mocha
@@ -99,146 +104,206 @@ require("lazy").setup({
 	},
 	{
 		'sonph/onehalf',
+		lazy = true,
 		config = function(plugin)
 			vim.opt.rtp:append(plugin.dir .. '/vim')
 		end
 	},
 	{
 		'folke/tokyonight.nvim',
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme tokyonight]]
 		-- end
 	},
 	{
-		'rebelot/kanagawa.nvim'
+		'rebelot/kanagawa.nvim',
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme kanagawa]]
 		-- end
 	},
 	{
-		'EdenEast/nightfox.nvim'
+		'EdenEast/nightfox.nvim',
+		lazy = true,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme nightfox]]
 		-- end
 	},
 	{
-		'projekt0n/github-nvim-theme'
+		'projekt0n/github-nvim-theme',
+		lazy = true,
 		-- config = function()
 		-- 	require('github-theme').setup()
 		-- end
 	},
 	{
 		'AlexvZyl/nordic.nvim',
+		lazy = true,
 		-- config = function()
 		-- 	require('nordic').load()
 		-- end
 	},
 
-	'kyazdani42/nvim-web-devicons',
+	{
+		'nvim-tree/nvim-web-devicons',
+		lazy = true
+	},
 	{
 		'hoob3rt/lualine.nvim',
-		dependencies = { 'kyazdani42/nvim-web-devicons' },
-		-- event = "BufWinEnter",
-		config = function() require("lualine-conf") end
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		event = "BufWinEnter",
+		config = function() require("plugins/lualine") end
 	},
 
-	{ 'junegunn/vim-easy-align' },
-	{ 'nvim-lua/plenary.nvim' },
+	{
+		'junegunn/vim-easy-align',
+		lazy = true,
+		event = "VeryLazy"
+	},
+	{ 'nvim-lua/plenary.nvim', lazy = true },
 	{
 		"folke/todo-comments.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
 		config = function() require("todo-comments").setup {} end,
-		-- event = 'BufRead'
+		event = 'BufWinEnter'
 	},
 	{
 		'sheerun/vim-polyglot',
-		-- lazy = false
-		-- event = 'BufReadPre'
+		lazy = true,
 	},
-	{ 'CraneStation/cranelift.vim' },
+	{
+		'CraneStation/cranelift.vim',
+		event = 'BufRead *.clif'
+	},
 	{
 		'JuliaEditorSupport/julia-vim',
-		-- event = 'BufReadPre'
+		event = 'BufRead *.jl, *.jll'
 	},
 	{
 		'glts/vim-radical',
 		dependencies = { 'glts/vim-magnum' },
-		-- event = 'VimEnter'
+		event = 'VeryLazy'
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
+		lazy = true,
+		event = "BufEnter",
 		build = ":TSUpdate",
-		-- event = "BufEnter",
-		config = function() require("tree-sitter-conf") end
+		config = function() require("plugins/tree-sitter") end
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		dependencies = { 'nvim-treesitter' },
+		lazy = true
 	},
 	{
 		'akinsho/bufferline.nvim',
 		version = "*",
-		dependencies = 'kyazdani42/nvim-web-devicons',
+		dependencies = 'nvim-tree/nvim-web-devicons',
 		event = "BufWinEnter",
-		config = function() require("bufferline-conf") end
+		config = function() require("plugins/bufferline") end
 	},
 	{
-		'kyazdani42/nvim-tree.lua',
-		dependencies = 'kyazdani42/nvim-web-devicons',
+		'nvim-tree/nvim-tree.lua',
+		lazy = true,
+		dependencies = 'nvim-tree/nvim-web-devicons',
 		cmd = "NvimTreeToggle",
-		config = function() require("nvim-tree").setup {} end
+		config = function() require("plugins/nvim-tree") end
 	},
 
 	-- {'folke/which-key.nvim', event = "BufWinEnter", config = "require('whichkey-config')"},
 	{
 		'nvim-telescope/telescope.nvim',
-		lazy = false,
-		dependencies = { 'nvim-lua/plenary.nvim' },
+		lazy = true,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope-fzf-native.nvim',
+			'nvim-telescope/telescope-symbols.nvim'
+		},
 		cmd = "Telescope",
-		config = function() require("telescope-conf") end,
-		-- event = 'BufWinEnter'
+		config = function() require("plugins/telescope") end,
+		event = 'BufWinEnter'
 	},
-	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-	{ 'nvim-telescope/telescope-symbols.nvim' },
+	-- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
+	{
+		'nvim-telescope/telescope-fzf-native.nvim',
+		url = "/home/paulobs/Develop/telescope-fzf-native.nvim",
+		build = 'make',
+		lazy = true
+	},
+	{ 'nvim-telescope/telescope-symbols.nvim',    lazy = true },
 
 	{
 		'neovim/nvim-lspconfig',
-		dependencies = { 'folke/neoconf.nvim' },
-		config = function() require('lsp') end,
-		-- event = 'BufReadPost'
+		lazy = true,
+		dependencies = {
+			'folke/neoconf.nvim',
+			'folke/trouble.nvim',
+			'j-hui/fidget.nvim',
+			'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+		},
+		config = function() require('plugins/lsp') end,
 	},
-	{ 'hrsh7th/cmp-nvim-lsp' },
-	{ 'hrsh7th/cmp-buffer' },
-	{ 'hrsh7th/nvim-cmp' },
-	{ 'hrsh7th/cmp-path' },
-	{ 'hrsh7th/cmp-nvim-lua' },
-	{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
-	{ 'L3MON4D3/LuaSnip' },
+	{
+		'hrsh7th/nvim-cmp',
+		event = "InsertEnter",
+		dependencies = {
+			'neovim/nvim-lspconfig',
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"saadparwaiz1/cmp_luasnip",
+			"onsails/lspkind-nvim"
+		}
+	},
+	{ 'hrsh7th/cmp-nvim-lsp',                lazy = true },
+	{ 'hrsh7th/cmp-nvim-lua',                lazy = true },
+	{ 'hrsh7th/cmp-buffer',                  lazy = true },
+	{ 'hrsh7th/cmp-path',                    lazy = true },
+	{ 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
+	{ 'L3MON4D3/LuaSnip',                    lazy = true },
+	{ 'rafamadriz/friendly-snippets',        lazy = true },
 	{
 		'saadparwaiz1/cmp_luasnip',
+		lazy = true,
 		dependencies = {
 			'L3MON4D3/LuaSnip',
 			'rafamadriz/friendly-snippets'
 		}
 	},
-	{ 'rafamadriz/friendly-snippets' },
 	{
 		'j-hui/fidget.nvim',
-		dependencies = 'neovim/nvim-lspconfig',
-		tag = 'legacy',
+		lazy = true,
+		tag = 'v1.5.0',
 		config = function() require("fidget").setup {} end,
-		-- after = 'nvim-lspconfig'
 	},
-	{ 'onsails/lspkind-nvim' },
+	{
+		'onsails/lspkind-nvim',
+		lazy = true
+	},
 	{
 		'folke/trouble.nvim',
-		dependencies = "kyazdani42/nvim-web-devicons",
+		lazy = true,
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function() require("trouble").setup {} end
 	},
-	{ 'folke/neodev.nvim' },
-	{ 'folke/neoconf.nvim' },
+	{ 'folke/lazydev.nvim',
+		ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+		lazy = true
+	},
+	{ 'folke/neoconf.nvim', lazy = true },
 	{
 		'folke/zen-mode.nvim',
+		event = "VeryLazy", -- maybe BufWinEnter for using with -c
 		opts = {}
 	},
 	-- when needed, add mason.nvim for:
@@ -248,13 +313,13 @@ require("lazy").setup({
 	-- Formatters: null-ls.nvim or formatter.nvim
 	{
 		'norcalli/nvim-colorizer.lua',
-		config = function() require("colorizer-conf") end,
-		-- event = "BufRead"
+		config = function() require("plugins/colorizer") end,
+		event = "BufWinEnter"
 	},
 	{
 		'terrortylor/nvim-comment',
-		config = function() require("nvim_comment-conf") end,
-		-- event = "BufReadPost"
+		config = function() require("plugins/nvim-comment") end,
+		event = "VeryLazy"
 	},
 	-- {
 	-- 	'yorickpeterse/nvim-pqf',
@@ -263,15 +328,15 @@ require("lazy").setup({
 	{
 		'kevinhwang91/nvim-bqf',
 		ft = 'qf',
-		config = function() require("bqf").setup {
-				preview = {
-					auto_preview = false
-				}
+		opts = {
+			preview = {
+				auto_preview = false
 			}
-		end
+		}
 	},
-	{ 
+	{
 		'fedepujol/move.nvim',
+		event = "VeryLazy",
 		opts = {}
 	},
 	{
@@ -279,12 +344,13 @@ require("lazy").setup({
 		config = function()
 			local leap = require('leap')
 			leap.create_default_mappings()
-		end
+		end,
+		event = 'VeryLazy'
 	}, -- jumping plugin
 	{
 		'sindrets/diffview.nvim',
 		dependencies = 'nvim-lua/plenary.nvim',
-		-- event = 'VimEnter'
+		event = 'BufWinEnter'
 	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
@@ -303,6 +369,7 @@ require("lazy").setup({
 				}
 			}
 		end,
+		event = "BufEnter",
 		opts = {},
 	},
 	{
@@ -312,13 +379,12 @@ require("lazy").setup({
 
 	{
 		'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
+		lazy = true,
 		config = function()
 			require("toggle_lsp_diagnostics").init { start_on = false }
 		end,
-		-- after = 'nvim-lspconfig'
 	},
 
-	{ 'gluon-lang/vim-gluon' },
 	{ 'shirk/vim-gas' },
 
 }

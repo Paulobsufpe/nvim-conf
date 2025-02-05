@@ -32,11 +32,12 @@ map(
 		local bufnr = vim.api.nvim_get_current_buf()
 		local on = false
 		-- não sei fazer isso de um jeito melhor com a api disponível
-		vim.lsp.for_each_buffer_client(bufnr, function(client)
+		for _, client in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
 			print(vim.inspect(client))
 			on = true
-		end)
+		end
 
+		require('lspconfig')
 		if on then
 			vim.cmd('LspStop')
 		else
@@ -59,17 +60,19 @@ map(
 
 map('n', '<leader>R', ':e!<CR>')
 
--- NOTE: talvez deva mudar isso depois para liberar o comando '>' puro.
-map('v', '>', '>gv')
-map('v', '<', '<gv')
+-- BUG: Doesnt work anymore. Really dont know why :(
+-- map('v', '>', '>gv')
+-- map('v', '<', '<gv')
 
-map('i', '<c-Left>',  '<home>')
+map('i', '<c-Left>', '<home>')
 map('i', '<c-Right>', '<end>')
 
-map('n', '<m-Left>',  '<c-w><Left>')
+map('n', '<m-Left>', '<c-w><Left>')
 map('n', '<m-Right>', '<c-w><Right>')
-map('n', '<m-Up>',    '<c-w><Up>')
-map('n', '<m-Down>',  '<c-w><Down>')
+map('n', '<m-Up>', '<c-w><Up>')
+map('n', '<m-Down>', '<c-w><Down>')
+
+map('n', '<m-t>', ':terminal<cr>')
 
 -- Tabs
 
@@ -79,12 +82,12 @@ map('n', '[t', ':tabNext<CR>', { silent = true })
 -- Quickfix list, Loc list, etc
 
 map('n', '<leader>E', ":cw<cr>")
-map('n', '[e',        ":cN<cr>")
-map('n', ']e',        ":cn<cr>")
+map('n', '[e', ":cN<cr>")
+map('n', ']e', ":cn<cr>")
 
 map('n', '<leader>L', ":lw<cr>")
-map('n', '[l',        ":lNext<cr>")
-map('n', ']l',        ":lnext<cr>")
+map('n', '[l', ":lNext<cr>")
+map('n', ']l', ":lnext<cr>")
 
 map('n', '<space>m', ":mak ", { silent = false })
 
@@ -100,10 +103,10 @@ map('n', ';;', ":TodoLocList<CR>")
 
 -- BufferLine
 
--- map('n', ']b', ':BufferLineCycleNext<CR>', { silent = true })
--- map('n', '[b', ':BufferLineCyclePrev<CR>', { silent = true })
-map('n', ']b', ':bnext<CR>', { silent = true })
-map('n', '[b', ':bNext<CR>', { silent = true })
+map('n', ']b', ':BufferLineCycleNext<CR>', { silent = true })
+map('n', '[b', ':BufferLineCyclePrev<CR>', { silent = true })
+-- map('n', ']b', ':bnext<CR>', { silent = true })
+-- map('n', '[b', ':bNext<CR>', { silent = true })
 
 -- map('n', 'm>', ':BufferLineMoveNext<CR>', { silent = true })
 -- map('n', 'm<', ':BufferLineMovePrev<CR>', { silent = true })
@@ -121,8 +124,8 @@ nnoremap <silent>sbd :BufferLineSortByDirectory<CR>
 
 -- Nvim-Tree
 
-map('n', '<space>n',  ':NvimTreeToggle<CR>',   { silent = true })
-map('n', '<leader>r', ':NvimTreeRefresh<CR>',  { silent = true })
+map('n', '<space>n', ':NvimTreeToggle<CR>', { silent = true })
+map('n', '<leader>r', ':NvimTreeRefresh<CR>', { silent = true })
 map('n', '<leader>n', ':NvimTreeFindFile<CR>', { silent = true })
 
 -- move.nvim
@@ -141,3 +144,10 @@ map('v', '<C-j>', ':MoveBlock(1)<CR>', opts)
 map('v', '<C-k>', ':MoveBlock(-1)<CR>', opts)
 -- map('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
 -- map('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
+
+-- Terminal-mode commands
+map('t', '<C-x>', '<C-\\><C-n>')
+map('t', '<m-Left>', '<C-\\><C-n><c-w><Left>')
+map('t', '<m-Right>', '<C-\\><C-n><c-w><Right>')
+map('t', '<m-Up>', '<C-\\><C-n><c-w><Up>')
+map('t', '<m-Down>', '<C-\\><C-n><c-w><Down>')
