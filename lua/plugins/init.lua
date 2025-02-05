@@ -227,8 +227,7 @@ require("lazy").setup({
 	-- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
-		url = "/home/paulobs/Develop/telescope-fzf-native.nvim",
-		build = 'make',
+		build = 'make CFLAGS=-O3\\ -march=native',
 		lazy = true
 	},
 	{ 'nvim-telescope/telescope-symbols.nvim', lazy = true },
