@@ -35,6 +35,9 @@ require('telescope').setup {
 	defaults = {
 		file_ignore_patterns = { 
 			".cache/clangd",
+			".github",
+			".mypy_cache",
+			"__pycache__",
       "node_modules" 
     },
 		mappings = {
@@ -63,7 +66,8 @@ require('telescope').setup {
 				'-c', 'never',
 				'-t', 'f',
 				'--strip-cwd-prefix',
-				'-E', '**/.git/*'
+				'-E', '**/.git/*',
+				'-E', '**/.mypy_cache/*'
 			}
 		},
 		live_grep = {
