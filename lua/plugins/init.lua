@@ -31,7 +31,7 @@ require("lazy").setup({
 	-- },
 	{
 		'olimorris/onedarkpro.nvim',
-		lazy = true,
+		lazy = false,
 		-- config = function()
 		-- 	vim.cmd [[colorscheme onedark]]
 		-- end
@@ -67,7 +67,7 @@ require("lazy").setup({
 	},
 	{
 		'marko-cerovac/material.nvim',
-		lazy = true,
+		lazy = false,
 		-- config = function()
 		-- 	-- darker, lighter, oceanic, palenight, deep ocean
 		-- 	-- vim.g.material_style = 'palenight'
@@ -187,7 +187,7 @@ require("lazy").setup({
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
-		lazy = true,
+		lazy = false,
 		event = "BufEnter",
 		build = ":TSUpdate",
 		config = function() require("plugins/tree-sitter") end
@@ -392,7 +392,5 @@ require("lazy").setup({
 
 	{ 'shirk/vim-gas' },
 
-}
--- opts
+}, { rocks = { enable = false } }
 )
--- end)
