@@ -6,13 +6,9 @@ local capabilities = require('cmp_nvim_lsp')
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
-map('n', '<space>q', vim.diagnostic.setloclist, opts)
+map('n', '<space>l', vim.diagnostic.setloclist, opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-	-- Enable completion triggered by <c-x><c-o>
-	-- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
 	map('n', '<space>I', function()
@@ -41,11 +37,14 @@ end
 
 -- End Mappings
 
+-- FIX: garantir que isso funcione como esperado. on_attach is set?
+vim.lsp.config('*', {
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 vim.lsp.enable('lua_ls')
 vim.lsp.config('lua_ls', {
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
@@ -72,9 +71,6 @@ vim.lsp.config('lua_ls', {
 
 vim.lsp.enable('pylsp')
 vim.lsp.config('pylsp', {
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities,
 	settings = {
 		pylsp = {
 			plugins = {
@@ -85,11 +81,8 @@ vim.lsp.config('pylsp', {
 	}
 })
 
-vim.lsp.enable('sourcekit')
+-- vim.lsp.enable('sourcekit')
 vim.lsp.config('sourcekit', {
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities,
 	filetypes = { 'swift', 'objective-c', 'objective-cpp' },
 })
 
@@ -104,53 +97,32 @@ end
 
 vim.lsp.enable('clangd')
 vim.lsp.config('clangd', {
-	on_attach = on_attach,
-	autostart = false,
 	cmd = { get_clangd() },
-	capabilities = capabilities,
 	filetypes = { 'c', 'cpp' }
 })
 
 vim.lsp.enable('rust_analyzer')
 vim.lsp.config('rust_analyzer', {
-	on_attach = on_attach,
-	autostart = false,
 	cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
-	capabilities = capabilities
 })
 
 vim.lsp.enable('denols')
 vim.lsp.config('denols', {
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities
 })
 
 vim.lsp.enable('texlab')
 vim.lsp.config('texlab', {
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities
 })
 
 vim.lsp.enable('zls')
 vim.lsp.config('zls', {
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities
 })
 
 vim.lsp.enable('ocamllsp')
 vim.lsp.config('ocamllsp', {
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities
 })
 
 vim.lsp.enable('hls')
 vim.lsp.config('hls', {
-	on_attach = on_attach,
-	autostart = false,
-	capabilities = capabilities,
 	filetypes = { 'haskell', 'lhaskell', 'cabal' }
 })
