@@ -149,10 +149,16 @@ map('n', '<space>M', function()
 end, {})
 map('n', '<space>W', builtin.grep_string)
 map('n', '<space>G', builtin.live_grep)
+map('n', '<space>/', function()
+	builtin.live_grep {
+		grep_open_files = true,
+		prompt_title = 'Live Grep in Open Files'
+	}
+end)
 map('n', '<space>b', builtin.buffers)
 map('n', '<space>h', builtin.help_tags)
 map('n', '<space>c', builtin.commands)
-map('n', '<space>S', builtin.symbols)
+map('n', '<space>s', builtin.symbols)
 
 map('n', '<space>d',  builtin.lsp_definitions)
 map('n', '<space>r',  builtin.lsp_references)
