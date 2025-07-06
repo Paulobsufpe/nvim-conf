@@ -12,7 +12,9 @@ local map = vim.keymap.set
 
 -- Maps
 
-map('n', '<leader>d', ':ToggleDiag<CR>')
+map('n', '<leader>d', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { silent = true, noremap = true })
 
 map(
 	'n', '<leader>h',
@@ -27,21 +29,29 @@ map(
 )
 
 map(
-	'n', '<leader>l',
+	'n', '<leader>L',
 	function()
 		local bufnr = vim.api.nvim_get_current_buf()
-		local on = false
+		local client = nil
 		-- não sei fazer isso de um jeito melhor com a api disponível
-		for _, client in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
-			print(vim.inspect(client))
-			on = true
+		for _, client_ in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+			-- print(vim.inspect(client))
+			client = client_
 		end
 
-		require('lspconfig')
-		if on then
-			vim.cmd('LspStop')
+		if client then
+			vim.lsp.stop_client(client)
 		else
-			vim.cmd('LspStart')
+			local servers = {}
+			local filetype = vim.bo.filetype
+			---@diagnostic disable-next-line: invisible
+      for name, _ in pairs(vim.lsp.config._configs) do
+        local filetypes = vim.lsp.config[name].filetypes
+        if filetypes and vim.tbl_contains(filetypes, filetype) then
+          table.insert(servers, name)
+        end
+      end
+			vim.lsp.enable(servers)
 		end
 	end,
 	{}
@@ -74,39 +84,24 @@ map('n', '<m-Down>', '<c-w><Down>')
 
 map('n', '<m-t>', ':terminal<cr>')
 
--- Tabs
-
-map('n', ']t', ':tabnext<CR>', { silent = true })
-map('n', '[t', ':tabNext<CR>', { silent = true })
-
 -- Quickfix list, Loc list, etc
 
-map('n', '<leader>E', ":cw<cr>")
-map('n', '[e', ":cN<cr>")
-map('n', ']e', ":cn<cr>")
-
-map('n', '<leader>L', ":lw<cr>")
+map('n', '<leader>q', vim.cmd.copen)
+map('n', '<leader>l', vim.cmd.lopen)
 map('n', '[l', ":lNext<cr>")
 map('n', ']l', ":lnext<cr>")
 
 map('n', '<space>m', ":mak ", { silent = false })
 
--- Trouble
-
-map('n', ',,', ":Trouble diagnostics<CR>")
-
 -- Todo
 
 map('n', ';.', ":TodoTelescope<CR>")
-map('n', ';,', ":Trouble todo<CR>")
 map('n', ';;', ":TodoLocList<CR>")
 
 -- BufferLine
 
 map('n', ']b', ':BufferLineCycleNext<CR>', { silent = true })
 map('n', '[b', ':BufferLineCyclePrev<CR>', { silent = true })
--- map('n', ']b', ':bnext<CR>', { silent = true })
--- map('n', '[b', ':bNext<CR>', { silent = true })
 
 -- map('n', 'm>', ':BufferLineMoveNext<CR>', { silent = true })
 -- map('n', 'm<', ':BufferLineMovePrev<CR>', { silent = true })
@@ -151,3 +146,4 @@ map('t', '<m-Left>', '<C-\\><C-n><c-w><Left>')
 map('t', '<m-Right>', '<C-\\><C-n><c-w><Right>')
 map('t', '<m-Up>', '<C-\\><C-n><c-w><Up>')
 map('t', '<m-Down>', '<C-\\><C-n><c-w><Down>')
+
