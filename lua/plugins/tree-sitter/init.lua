@@ -4,14 +4,26 @@ require 'nvim-treesitter.configs'.setup {
 		"lua", "julia", "html", "json",
 		"c_sharp", "scala", "python", "dot",
 		"javascript", "typescript",
-		"css", "yaml", "zig", "haskell"
+		"css", "yaml", "zig", "haskell",
+		"vim", "vimdoc", "query", "markdown",
+		"markdown_inline"
 	},
+
+	-- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = false,
+
+  -- List of parsers to ignore installing (or "all")
+  ignore_install = {},
 
 	highlight = {
 		enable = true,
 		-- list of language that will be disabled
 		-- disable = {},
-		disable = function(lang, buf)
+		disable = function(_, buf)
 			local max_filesize = 5000 * 1024 -- 5_000 KB
 			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 			if ok and stats and stats.size > max_filesize then
@@ -111,12 +123,22 @@ require 'nvim-treesitter.configs'.setup {
       --   ["[d"] = "@conditional.outer",
       -- }
     },
-	}
+		lsp_interop = {
+      enable = true,
+      border = 'none',
+      floating_preview_opts = {},
+      peek_definition_code = {
+        ["<leader>df"] = "@function.outer",
+        ["<leader>dF"] = "@class.outer",
+      },
+    },
+	},
+	modules = {}
 }
 
-local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
-
--- Repeat movement with ; and ,
--- ensure ; goes forward and , goes backward regardless of the last direction
-vim.keymap.set({ "n", "x", "o" }, ">", ts_repeat_move.repeat_last_move_next)
-vim.keymap.set({ "n", "x", "o" }, "<", ts_repeat_move.repeat_last_move_previous)
+-- local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+--
+-- -- Repeat movement with ; and ,
+-- -- ensure ; goes forward and , goes backward regardless of the last direction
+-- vim.keymap.set({ "n", "x", "o" }, ">", ts_repeat_move.repeat_last_move_next)
+-- vim.keymap.set({ "n", "x", "o" }, "<", ts_repeat_move.repeat_last_move_previous)
