@@ -1,8 +1,6 @@
 vim.g.completeopt = "menu,menuone,noselect,noinsert"
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
--- nvim-cmp
 local cmp = require("cmp")
 
 local luasnip = require("luasnip")
