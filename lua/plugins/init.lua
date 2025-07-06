@@ -12,10 +12,16 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
-vim.opt.rtp:prepend(lazypath)
+local rtp = vim.opt.rtp
+rtp:prepend(lazypath)
 
 require("lazy").setup({
-
+	{
+		'nmac427/guess-indent.nvim',
+		config = function() require('guess-indent').setup {
+			auto_cmd = false
+		} end
+	},
 	{ 'rktjmp/lush.nvim',      lazy = true },
 	{
 		"phha/zenburn.nvim",
@@ -188,12 +194,14 @@ require("lazy").setup({
 	{
 		'nvim-treesitter/nvim-treesitter',
 		lazy = false,
+		branch = 'master',
 		event = "BufEnter",
 		build = ":TSUpdate",
 		config = function() require("plugins/tree-sitter") end
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = 'nvim-treesitter/nvim-treesitter',
 		lazy = true
 	},
 	{
@@ -224,11 +232,13 @@ require("lazy").setup({
 		config = function() require("plugins/telescope") end,
 		event = 'BufWinEnter'
 	},
-	-- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'make CFLAGS=-O3\\ -march=native\\ -mtune=native\\ -flto',
-		lazy = true
+		lazy = true,
+		cond = function()
+			return vim.fn.executable 'make' == 1
+    end,
 	},
 	{ 'nvim-telescope/telescope-symbols.nvim', lazy = true },
 
@@ -237,15 +247,13 @@ require("lazy").setup({
 		lazy = true,
 		dependencies = {
 			'folke/neoconf.nvim',
-			'folke/trouble.nvim',
 			'j-hui/fidget.nvim',
-			'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 		},
 		config = function() require('plugins/lsp') end,
 	},
 	{
 		'hrsh7th/nvim-cmp',
-		event = "InsertEnter",
+		event = "VimEnter",
 		dependencies = {
 			'neovim/nvim-lspconfig',
 			"hrsh7th/cmp-nvim-lsp",
@@ -281,12 +289,6 @@ require("lazy").setup({
 	{
 		'onsails/lspkind-nvim',
 		lazy = true
-	},
-	{
-		'folke/trouble.nvim',
-		lazy = true,
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function() require("trouble").setup {} end
 	},
 	{
 		'folke/lazydev.nvim',
@@ -380,15 +382,6 @@ require("lazy").setup({
 		'windwp/nvim-autopairs',
 		config = function() require("nvim-autopairs").setup {} end
 	},
-
-	{
-		'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
-		lazy = true,
-		config = function()
-			require("toggle_lsp_diagnostics").init { start_on = false }
-		end,
-	},
-
 	{ 'shirk/vim-gas' },
 
 }, { rocks = { enable = false } }
