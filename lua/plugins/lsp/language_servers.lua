@@ -1,16 +1,11 @@
 require('neoconf').setup {}
-local lspconf = require('lspconfig')
-
 local capabilities = require('cmp_nvim_lsp')
-		.default_capabilities(capabilities)
+		.default_capabilities()
 
 -- Mappings
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
-map('n', '<space>e', vim.diagnostic.open_float, opts)
-map('n', '[d', vim.diagnostic.goto_prev, opts)
-map('n', ']d', vim.diagnostic.goto_next, opts)
 map('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
@@ -22,7 +17,7 @@ local on_attach = function(client, bufnr)
 
 	map('n', '<space>I', function()
 		if client.server_capabilities.inlayHintProvider then
-			vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		else
 			vim.print("Inlay Hint não suportado pelo LSP")
 		end
@@ -32,26 +27,22 @@ local on_attach = function(client, bufnr)
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	map('n', 'gD', vim.lsp.buf.declaration, bufopts)
 	map('n', 'gd', vim.lsp.buf.definition, bufopts)
-	map('n', 'K', vim.lsp.buf.hover, bufopts)
-	map('n', 'gI', vim.lsp.buf.implementation, bufopts)
-	map('n', 'gr', vim.lsp.buf.references, bufopts)
 
-	map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+	map('n', '<C-S>', vim.lsp.buf.signature_help, bufopts)
 	map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
 	map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
 	map('n', '<space>wl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, { silent = false, buffer = bufnr })
 	map('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-	map('n', '<space>R', vim.lsp.buf.rename, bufopts)
-	map('n', '<space>a', vim.lsp.buf.code_action, bufopts)
 	map('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
 	map('n', '<space>.', ":lua vim.lsp.buf.", { silent = false, buffer = bufnr })
 end
 
 -- End Mappings
 
-lspconf.lua_ls.setup({
+vim.lsp.enable('lua_ls')
+vim.lsp.config('lua_ls', {
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities,
@@ -79,7 +70,8 @@ lspconf.lua_ls.setup({
 	},
 })
 
-lspconf.pylsp.setup({
+vim.lsp.enable('pylsp')
+vim.lsp.config('pylsp', {
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities,
@@ -93,7 +85,8 @@ lspconf.pylsp.setup({
 	}
 })
 
-lspconf.sourcekit.setup({
+vim.lsp.enable('sourcekit')
+vim.lsp.config('sourcekit', {
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities,
@@ -109,7 +102,8 @@ local function get_clangd()
 	end
 end
 
-lspconf.clangd.setup({
+vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
 	on_attach = on_attach,
 	autostart = false,
 	cmd = { get_clangd() },
@@ -117,38 +111,44 @@ lspconf.clangd.setup({
 	filetypes = { 'c', 'cpp' }
 })
 
-lspconf.rust_analyzer.setup({
+vim.lsp.enable('rust_analyzer')
+vim.lsp.config('rust_analyzer', {
 	on_attach = on_attach,
 	autostart = false,
 	cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
 	capabilities = capabilities
 })
 
-lspconf.denols.setup({
+vim.lsp.enable('denols')
+vim.lsp.config('denols', {
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities
 })
 
-lspconf.texlab.setup({
+vim.lsp.enable('texlab')
+vim.lsp.config('texlab', {
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities
 })
 
-lspconf.zls.setup({
+vim.lsp.enable('zls')
+vim.lsp.config('zls', {
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities
 })
 
-lspconf.ocamllsp.setup({
+vim.lsp.enable('ocamllsp')
+vim.lsp.config('ocamllsp', {
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities
 })
 
-lspconf.hls.setup({
+vim.lsp.enable('hls')
+vim.lsp.config('hls', {
 	on_attach = on_attach,
 	autostart = false,
 	capabilities = capabilities,
