@@ -234,7 +234,7 @@ require("lazy").setup({
 	},
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'make CFLAGS=-O3\\ -march=native\\ -mtune=native\\ -flto',
+		build = 'make CFLAGS=-O3\\ -march=native\\ -mtune=native\\ -flto\\ -fPIC',
 		lazy = true,
 		cond = function()
 			return vim.fn.executable 'make' == 1
